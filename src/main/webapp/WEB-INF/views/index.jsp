@@ -4,7 +4,6 @@
 <%@ include file="./include/header.jspf"%>
 
 <div class="hero-slider">
-
 	<div class="slider-item th-fullpage hero-area"
 		style="background-image: url(<%=request.getContextPath()%>/images/slider/korean.jpg);">
 		<div class="container">

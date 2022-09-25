@@ -1,29 +1,24 @@
 package kh.project4.mealchelin.member;
 
-import java.util.List;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestParam;
 
+@Slf4j
 @Controller
 public class MemberController {
-
-	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
 	@Autowired
 	MemberService memberService;
@@ -31,7 +26,7 @@ public class MemberController {
 	@Autowired
     private MailSendService mailService;
 
-	@RequestMapping(value = "/login.do")
+	@RequestMapping(value = "/login.do") // .do 필요없으니 다 뺄 예정(뷰도 다 수정해야함;;)
 	public String login(@CookieValue(value="saveId", required=false)Cookie cookie, Model model) {	
 		if (cookie != null) { // 아이디 저장 쿠키 있으면 불러오기
 			String saveIdCookie = cookie.getValue();
@@ -44,7 +39,7 @@ public class MemberController {
 	public String submitLogin(MemberDTO member, HttpServletRequest request, HttpServletResponse response) throws Exception {		
 		MemberDTO loginData = memberService.submitLogin(member); 			
 		if (loginData == null) // 비밀번호 틀리면 null값 들어옴		
-			return alertMsgAndGoUrl(request, "로그인 오류! ID와 비밀번호를 확인해주세요~!!", "login.do");	
+			return alertMsgAndGoUrl(request, "로그인 오류! ID와 비밀번호를 확인해주세요~!!", "login.do");
 		if (loginData.getMLevel() == -1) // 회원등급 -1 은 탈퇴한 계정
 			return alertMsgAndGoUrl(request, "탈퇴한 계정입니다. 다른 ID로 로그인해주세요~!!", "login.do");	
 		HttpSession session = request.getSession();
@@ -62,7 +57,7 @@ public class MemberController {
 	}
 	
 	private void addCookie(HttpServletResponse response, String id, int setMaxAge) {
-		logger.info("쿠키 생성 : {}", id);
+		log.info("쿠키 생성 : {}", id);
 		Cookie cookieSaveId = new Cookie("saveId", id);
 		cookieSaveId.setMaxAge(setMaxAge);
 		response.addCookie(cookieSaveId);
@@ -99,16 +94,16 @@ public class MemberController {
 	@RequestMapping(value = "/checkUniqueId.do")
 	@ResponseBody
 	public int checkUniqueId(String mId) throws Exception {
-	    logger.info("ID 중복 검사: {}", mId);
-	    logger.info("ID 중복 검사 결과: {}", memberService.checkUniqueId(mId));
+	    log.info("ID 중복 검사: {}", mId);
+	    log.info("ID 중복 검사 결과: {}", memberService.checkUniqueId(mId));
 		return memberService.checkUniqueId(mId);
 	}
 
 	@RequestMapping(value = "/checkUniqueEmail.do")
 	@ResponseBody
 	public int checkUniqueEmail(String email) throws Exception {
-	    logger.info("이멜 중복 검사: {}", email);
-        logger.info("이멜 중복 검사 결과: {}", memberService.checkUniqueEmail(email));
+	    log.info("이멜 중복 검사: {}", email);
+        log.info("이멜 중복 검사 결과: {}", memberService.checkUniqueEmail(email));
 		return memberService.checkUniqueEmail(email);
 	}
 
@@ -270,8 +265,7 @@ public class MemberController {
 	
     @RequestMapping(value = "/adminPage.do", method = RequestMethod.GET)
     public String listSearch(@ModelAttribute("cri") MemberCriteria cri, Model model) throws Exception {
-        logger.info(cri.toString());
-
+        log.info(cri.toString());
     	model.addAttribute("memberlist", memberService.selectMemberList(cri));
     	MemberPageMaker pageMaker = new MemberPageMaker();
     	pageMaker.setCri(cri);

@@ -66,8 +66,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 			<div class="row">
 				<div class="col-md-4 col-xs-12 col-sm-4">
 <!-- 					<div class="contact-number">
-						<i class="tf-ion-ios-telephone"></i> <span>0129-
-							12323-12312</span>
+						<i class="tf-ion-ios-telephone"></i> <span>0129-12323-12312</span>
 					</div> -->
 				</div>
 				<div class="col-md-4 col-xs-12 col-sm-4">
@@ -272,7 +271,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 
 									<!-- Home -->
 									<li class="dropdown "><a
-										href="<%=request.getContextPath()%>">Home</a>
+										href="<%=request.getContextPath()%>/">Home</a>
 									</li>
 									<!-- / Home -->
 

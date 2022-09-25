@@ -1,4 +1,4 @@
-package kh.project4.mealchelin.main;
+package kh.project4.mealchelin;
 
 import java.util.List;
 
