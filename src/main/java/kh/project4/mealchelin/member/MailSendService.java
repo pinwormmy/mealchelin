@@ -72,18 +72,6 @@ public class MailSendService {
 		}
 	}
 
-	@Bean
-	public JavaMailSenderImpl mailSender() {
-		JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
-
-
-		javaMailSender.setHost("smtp.gmail.com");
-		javaMailSender.setPort(587);
-		javaMailSender.setUsername("kh361team1@gmail.com");
-		javaMailSender.setPassword("oclgzstuwxbveqgx");
-
-		return javaMailSender;
-	}
 	/*
 
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">

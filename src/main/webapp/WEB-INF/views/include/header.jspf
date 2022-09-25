@@ -9,7 +9,7 @@ VERSION: 1.0.0
 AUTHOR: Themefisher
 
 HOMEPAGE: https://themefisher.com/products/resources-e-commerce-template/
-DEMO: https://demo.themefisher.com/resources/
+DEMO: https://demo.themefisher.com/
 GITHUB: https://github.com/themefisher/resources-E-Commerce-Template/
 
 WEBSITE: https://themefisher.com
@@ -38,23 +38,23 @@ FACEBOOK: https://www.facebook.com/themefisher
 
 <!-- Favicon -->
 <link rel="shortcut icon" type="image/x-icon"
-	href="<%=request.getContextPath()%>/resources/images/favicon.png" />
+	href="<%=request.getContextPath()%>/images/favicon.png" />
 
 <!-- Themefisher Icon font -->
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/plugins/themefisher-font/style.css">
+	href="<%=request.getContextPath()%>/plugins/themefisher-font/style.css">
 <!-- bootstrap.min css -->
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/plugins/bootstrap/css/bootstrap.min.css">
+	href="<%=request.getContextPath()%>/plugins/bootstrap/css/bootstrap.min.css">
 
 <!-- Animate css -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/plugins/animate/animate.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/plugins/animate/animate.css">
 <!-- Slick Carousel -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/plugins/slick/slick.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/plugins/slick/slick-theme.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/plugins/slick/slick.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/plugins/slick/slick-theme.css">
 
 <!-- Main Stylesheet -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 
 </head>
 
@@ -120,7 +120,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 								<!-- Cart Item -->
 								<!--<div class="media">
 									<a class="pull-left" href="#!"> <img class="media-object"
-										src="<%=request.getContextPath()%>/resources/images/shop/cart/cart-1.jpg"
+										src="<%=request.getContextPath()%>/images/shop/cart/cart-1.jpg"
 										alt="image" />
 									</a>
 									<div class="media-body">
@@ -140,7 +140,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 								<!-- Cart Item -->
 								<!--<div class="media">
 									<a class="pull-left" href="#!"> <img class="media-object"
-										src="<%=request.getContextPath()%>/resources/images/shop/cart/cart-2.jpg"
+										src="<%=request.getContextPath()%>/images/shop/cart/cart-2.jpg"
 										alt="image" />
 									</a>
 									<div class="media-body">
