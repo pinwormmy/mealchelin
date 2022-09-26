@@ -56,9 +56,7 @@ public class MailSendService {
 
 	//전송 메소드
 	public void sendMail(String setFrom, String toMail, String title, String content) {
-
 		MimeMessage message = mailSender.createMimeMessage();
-
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(message,true,"utf-8");
 			helper.setFrom(setFrom);
@@ -72,7 +70,6 @@ public class MailSendService {
 	}
 
 	/*
-
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
@@ -91,6 +88,5 @@ public class MailSendService {
 			</props>
 		</property>
 	</bean>
-
 	 */
 }

@@ -12,35 +12,22 @@ public class MemberPageMaker {
 	private boolean next;
 
 	private int displayPageNum = 5;
-
 	private MemberCriteria cri;
-
 	public void setCri(MemberCriteria cri) {
 		this.cri = cri;
 	}
-
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
-
 		calcData();
 	}
 
 	private void calcData() {
-
 		endPage = (int) (Math.ceil(cri.getPage() / (double) displayPageNum) * displayPageNum);
-
 		startPage = (endPage - displayPageNum) + 1;
-
 		int tempEndPage = (int) (Math.ceil(totalCount / (double) cri.getPerPageNum()));
-
-		if (endPage > tempEndPage) {
-			endPage = tempEndPage;
-		}
-
+		if (endPage > tempEndPage) { endPage = tempEndPage; }
 		prev = startPage == 1 ? false : true;
-
 		next = endPage * cri.getPerPageNum() >= totalCount ? false : true;
-
 	}
 
 	public int getTotalCount() {
@@ -72,20 +59,16 @@ public class MemberPageMaker {
 	}
 
 	public String makeQuery(int page) {
-
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
 				.queryParam("perPageNum", cri.getPerPageNum()).build();
-
 		return uriComponents.toUriString();
 	}
 
 	public String makeSearch(int page) {
-
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
 				.queryParam("perPageNum", cri.getPerPageNum())
 				.queryParam("searchType", ((MemberCriteria) cri).getSearchType())
 				.queryParam("keyword", ((MemberCriteria) cri).getKeyword()).build();
-
 		return uriComponents.toUriString();
 	}
 }

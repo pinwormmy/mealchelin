@@ -1,7 +1,6 @@
 package kh.project4.mealchelin.board;
 
 public class SearchCriteria extends Criteria{
-
 	private String searchType = "";
 	private String keyword = "";
 	

@@ -26,15 +26,12 @@ public class MemberPage {
 	private String mId;
 	private String pw;
 
-	
-
 	public String getReviews() {
 		return reviews;
 	}
 	public void setReviews(String reviews) {
 		this.reviews = reviews;
 	}
-
 	private String reviews;
 	
 	public MemberPage(Number mNo, String mId, String pw, String reviews) {
@@ -44,19 +41,14 @@ public class MemberPage {
 		this.reviews = reviews;
 	}
 	
-	public MemberPage() {
-		
-	}
+	public MemberPage() {}
 	
 	public boolean eqauls(Object o) {
-		
 		if( o instanceof MemberPage) {
 			MemberPage m = (MemberPage)o;
 			return mNo == m.mNo;
 		}
 		return false;
-		
-		
 	}
 	
 }

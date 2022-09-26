@@ -17,18 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
 	@Inject
 	 private ProductServiceImpl productService;
-
 	@RequestMapping(value = "/")
 	public String index(HttpServletRequest request, Model model) throws Exception {
-
 		List<ProductVO> productList = productService.selectNewProductList();
-		
 		model.addAttribute("productList", productList);
 		logger.info("/index");
-		
 		return "index";
 	}
 	
@@ -40,11 +35,9 @@ public class HomeController {
 		return "index";
 	}
 	
-	
 	@RequestMapping(value = "/about")
 	public String about() throws Exception {
 		logger.info("/about");
-		
 		return "about";
 	}
 	

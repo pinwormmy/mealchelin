@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class OrderServiceImpl implements OrderService {
-	
 
 	@Autowired
 	private OrderMapper orderMapper;
@@ -49,7 +48,6 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public int checkProduct(CartVO cart) {
-
 		return orderMapper.checkProduct(cart);
 	}
 	
@@ -73,8 +71,6 @@ public class OrderServiceImpl implements OrderService {
 	public void resetCart(String mId) throws Exception {
 		orderMapper.resetCart(mId);
 	}
-
-	
 	
 	// 관리자
 	@Override
@@ -105,6 +101,5 @@ public class OrderServiceImpl implements OrderService {
 	public int countPage(OrderCriteria cri) throws Exception {
 		return orderMapper.countPage(cri);
 	}
-	
 
 }

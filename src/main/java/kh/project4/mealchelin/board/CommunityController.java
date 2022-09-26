@@ -21,9 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/community")
 public class CommunityController {
-
 	private static final Logger logger = LoggerFactory.getLogger(CommunityController.class);
-
 	@Inject
 	private CommunityService service;
 
@@ -35,54 +33,40 @@ public class CommunityController {
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String writePOST(CommunityVO community, MultipartHttpServletRequest communityRequest,
 			RedirectAttributes rttr) throws Exception {
-
 		logger.info("write post ...........");
 		logger.info(community.toString());
-
 		service.write(community, communityRequest);
-
 		rttr.addFlashAttribute("msg", "SUCCESS");
 		return "redirect:/community/list";
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
-
 		logger.info("show all list......................");
-
 		model.addAttribute("list", service.list(scri));
-
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
 		pageMaker.setTotalCount(service.listCount(scri));
-
 		model.addAttribute("pageMaker", pageMaker);
 	}
 
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public void read(@RequestParam("cNo") int cNo, Model model) throws Exception {
-
 		model.addAttribute("CommunityVO", service.read(cNo));
-
 		List<Map<String, Object>> fileList = service.selectFileList(cNo);
 		model.addAttribute("file", fileList);
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String remove(@RequestParam("cNo") int cNo, RedirectAttributes rttr) throws Exception {
-
 		service.delete(cNo);
-
 		rttr.addFlashAttribute("msg", "SUCCESS");
-
 		return "redirect:/community/list";
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public void modifyGET(int cNo, Model model) throws Exception {
-
 		model.addAttribute("CommunityVO", service.read(cNo));
-
 		List<Map<String, Object>> fileList = service.selectFileList(cNo);
 		model.addAttribute("file", fileList);
 	}
@@ -94,10 +78,8 @@ public class CommunityController {
 			throws Exception {
 
 		logger.info("mod post............");
-
 		service.update(community, files, fileNames, mpRequest);
 		rttr.addFlashAttribute("msg", "SUCCESS");
-
 		return "redirect:/community/list";
 	}
 
@@ -106,11 +88,9 @@ public class CommunityController {
 		Map<String, Object> resultMap = service.selectFileInfo(map);
 		String storedFileName = (String) resultMap.get("STORED_FILE_NAME");
 		String originalFileName = (String) resultMap.get("ORG_FILE_NAME");
-
 		// 파일을 저장했던 위치에서 첨부파일을 읽어 byte[]형식으로 변환한다.
 		byte fileByte[] = org.apache.commons.io.FileUtils
 				.readFileToByteArray(new File("C:\\Community\\file\\" + storedFileName));
-
 		response.setContentType("application/octet-stream");
 		response.setContentLength(fileByte.length);
 		response.setHeader("Content-Disposition",
@@ -122,15 +102,11 @@ public class CommunityController {
 
 	@RequestMapping(value = "/adminBoard", method = RequestMethod.GET)
 	public void adminlist(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
-
 		logger.info("show all list......................");
-
 		model.addAttribute("adminList", service.adminList(scri));
-
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
 		pageMaker.setTotalCount(service.adminListCount(scri));
-
 		model.addAttribute("pageMaker", pageMaker);
 	}
 	
