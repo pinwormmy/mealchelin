@@ -146,8 +146,6 @@
 											href="<%=request.getContextPath()%>/addCart.do?mId=${member.MId}&pId=${productList.PId}&cquantity=1"><i
 												class="tf-ion-android-cart"></i></a></li>
 									</c:if>
-									
-									
 								</ul>
 							</div>
 						</div>
@@ -161,9 +159,7 @@
 						</div>
 					</div>
 				</div>
-
 			</c:forEach>
-
 		</div>
 	</div>
 </section>

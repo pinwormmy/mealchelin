@@ -8,7 +8,6 @@ public class OrderVO {
 	
 	public OrderVO() {}
 	
-	
 	private int oId;
 	private String mId;
 	private int pId;

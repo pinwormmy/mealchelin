@@ -9,5 +9,4 @@ public class ProductTypeVO {
     private String tName;
     private String tNameEng;
 
-    
 }

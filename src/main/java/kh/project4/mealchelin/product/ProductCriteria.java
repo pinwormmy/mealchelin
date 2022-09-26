@@ -11,21 +11,17 @@ public class ProductCriteria {
 	}
 
 	public void setPage(int page) {
-
 		if (page <= 0) {
 			this.page = 1;
 		}
-
 		this.page = page;
 	}
 
 	public void setPerPageNum(int perPageNum) {
-
 		if (perPageNum <= 0 || perPageNum > 100) {
 			this.perPageNum = perPageNum;
 			return;
 		}
-
 		this.perPageNum = perPageNum;
 	}
 
@@ -35,13 +31,11 @@ public class ProductCriteria {
 
 	// method for MyBatis SQL Mapper -
 	public int getPageStart() {
-
 		return (this.page - 1) * perPageNum;
 	}
 
 	// method for MyBatis SQL Mapper
 	public int getPerPageNum() {
-
 		return perPageNum;
 	}
 

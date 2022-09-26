@@ -19,29 +19,23 @@ import kh.project4.mealchelin.mapper.CommentMapper;
 import javax.inject.Inject;
 
 @RestController
-//RestController = Controller + requestBody > returns JSON
 @RequestMapping("/reviews")
 public class CommentController {
 	@Inject
 	private CommentMapper commentMapper;
 
-	//create
 	@Transactional
 	@RequestMapping(value = "" , method = RequestMethod.POST)
 	public ResponseEntity<String> register(@RequestBody CommentVO vo){
 		ResponseEntity<String> entity = null;
-		
 		try {
 			commentMapper.create(vo);
-			
 			String[] files = vo.getFiles();
-			
 			if(files != null) {
 				for(String fileName: files) {
 					commentMapper.addAttach(fileName);
 				}
 			}
-			
 			entity = new ResponseEntity<String>("SUCCESS",HttpStatus.OK);
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -54,22 +48,18 @@ public class CommentController {
 	@RequestMapping(value = "/all/{pid}", method = RequestMethod.GET)
 	public ResponseEntity<List<CommentVO>> list(@PathVariable("pid") Integer pid){
 		ResponseEntity<List<CommentVO>> entity = null;
-		
 		try {
 			entity = new ResponseEntity<>(commentMapper.list(pid),HttpStatus.OK);
 		}catch(Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		
-		
 		return entity; 
 	}
 	
 	//update
 	@RequestMapping(value="/{rno}",method = {RequestMethod.PUT, RequestMethod.PATCH})
 	public ResponseEntity<String> update(@PathVariable("rno") Integer rno, @RequestBody CommentVO vo){
-		
 		ResponseEntity<String> entity = null;
 		try {
 			vo.setRno(rno);
@@ -80,7 +70,6 @@ public class CommentController {
 			entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 		return entity;
-		
 	}
 	//delete
 	@RequestMapping(value="/{rno}",method = {RequestMethod.DELETE})
@@ -104,31 +93,19 @@ public class CommentController {
 			@PathVariable("page") Integer page)
 	{
 		ResponseEntity<Map<String,Object>> entity = null;
-		
-		//System.out.println("pid="+pid + ", page=" + page);
-		
 		try {
 			CommentCriteria cri = new CommentCriteria();
 			cri.setPage(page);
-			
 			CommentPageMaker pageMaker = new CommentPageMaker();
 			pageMaker.setCri(cri);
-			
 			Map<String,Object> map = new HashMap<String , Object>();
-			
 			Map<String, Object> paramMap = new HashMap<>();
 			paramMap.put("pid", pid);
 			paramMap.put("cri", cri);
-			
 			List<CommentVO> list = commentMapper.listPage(paramMap);
-			
-			System.out.println(list.toString());
-			
 			map.put("list", list);
-			
 			int replyCount = commentMapper.count(pid);
 			pageMaker.setTotalCount(replyCount);
-			
 			map.put("commentPageMaker", pageMaker);
 			entity = new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
 		}catch(Exception e){

@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan(value={"kh.project4.mealchelin.mapper"})
 @SpringBootApplication
 public class MealchelinApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(MealchelinApplication.class, args);
 	}

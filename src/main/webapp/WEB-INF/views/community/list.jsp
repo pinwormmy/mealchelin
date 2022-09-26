@@ -28,10 +28,7 @@
 	text-align: right;
 }
 </style>
-
-
 <body id="body">
-
 	<!-- Main Menu Section -->
 	<section class="page-header">
 		<div class="container">
@@ -44,7 +41,6 @@
 			</div>
 		</div>
 	</section>
-
 	<section class="user-dashboard page-wrapper">
 		<div class="container">
 			<div class="row">

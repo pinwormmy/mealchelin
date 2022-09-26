@@ -20,24 +20,18 @@ public class FileUtils {
 	
 	public List<Map<String, Object>> parseInsertFileInfo(CommunityVO communityVO,
 														 MultipartHttpServletRequest mpRequest) throws Exception{
-		
 		Iterator<String> iterator = mpRequest.getFileNames();
-		
 		MultipartFile multipartFile = null;
 		String originalFileName = null;
 		String originalFileExtension = null;
 		String storedFileName = null;
-		
 		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
 		Map<String, Object> listMap = null;
-		
 		int cNo = (int)communityVO.getCNo();
-		
 		File file = new File(filePath);
 		if(file.exists() == false) {
 			file.mkdirs();
 		}
-		
 		while(iterator.hasNext()) {
 			multipartFile = mpRequest.getFile(iterator.next());
 			if(multipartFile.isEmpty() == false) {
@@ -58,7 +52,8 @@ public class FileUtils {
 		return list;
 	}
 	
-	public List<Map<String, Object>> parseUpdateFileInfo(CommunityVO communityVO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception{ 
+	public List<Map<String, Object>> parseUpdateFileInfo(CommunityVO communityVO, String[] files, String[] fileNames,
+														 MultipartHttpServletRequest mpRequest) throws Exception{
 		Iterator<String> iterator = mpRequest.getFileNames();
 		MultipartFile multipartFile = null; 
 		String originalFileName = null; 

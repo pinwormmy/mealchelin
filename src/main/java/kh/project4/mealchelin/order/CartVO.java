@@ -6,7 +6,6 @@ public class CartVO {
 	private int pId;
 	private int cquantity;
 	
-	
 	public CartVO() {
 		this.ucId = ucId;
 		this.mId = mId;
