@@ -65,7 +65,7 @@
 									<th>결제금액</th>
 									<th>주문현황</th>
 									<th>상세보기</th>
-									<th> </th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
