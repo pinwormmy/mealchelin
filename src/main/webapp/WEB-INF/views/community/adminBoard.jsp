@@ -55,7 +55,7 @@
                         href="<%=request.getContextPath()%>/product/adminProduct">Product</a></li>
                     <li><a href="<%=request.getContextPath()%>/adminOrder.do">Order</a></li>
                     <li><a class="active"
-                        href="<%=request.getContextPath()%>/community/adminBoard.do">Board</a></li>
+                        href="<%=request.getContextPath()%>/community/adminBoard">Board</a></li>
                 </ul>
                 <div class="dashboard-wrapper user-dashboard">
                     <div class="total-order mt-20">
