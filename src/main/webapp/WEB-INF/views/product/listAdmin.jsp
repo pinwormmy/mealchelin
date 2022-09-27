@@ -8,8 +8,6 @@
 <%@page import="java.text.DecimalFormat"%>
 
 <%@ include file="../include/header.jspf"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <section class="products section bg-gray">
 	<div class="container">
 		<div class="row" style="margin: 10px; text-align: right;">
@@ -21,13 +19,8 @@
 				<h2>Lists of foods</h2>
 			</div>
 		</div>
-		
 		<div class="row">
-
 			<c:forEach var="product" items="${productList}">
-
-
-
 				<div class="col-md-4">
 					<div class="product-item">
 						<div class="product-thumb">
@@ -43,30 +36,29 @@
 							<ul class="list-inline mt-10">
 								<li class="li"><a
 									href="<%=request.getContextPath()%>/product/update?pId=${product.PId}"
-									class="btn btn-main btn-small btn-round">Update</a></li>
-								<li class="li"><a
-									href="javascript:void(0);" onclick="delCheck(${product.PId});"
-									class="btn btn-main btn-small btn-round">Delete</a></li>
-
-
+									class="btn btn-main btn-small btn-round">Update</a>
+							    </li>
+								<li class="li">
+								    <button class="btn btn-main btn-small btn-round"
+								    onclick="delCheck(${product.PId});">Delete</button>
+								</li>
 							</ul>
 						</div>
 					</div>
 				</div>
 			</c:forEach>
-
-
 		</div>
 	</div>
 </section>
 
 <script>
+
 	function delCheck(productId) {
 		var chk = confirm("정말 삭제하시겠습니까?");
-		if (chk) {
+		if (chk)
 			location.href = '<%=request.getContextPath()%>/product/delete?pId=' + productId;
-		}
 	}
+
 </script>
 
 
