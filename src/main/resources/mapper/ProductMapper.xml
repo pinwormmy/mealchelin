@@ -44,19 +44,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<update id="updateProduct">
 		update product
-		set
-		typeCode=#{typeCode}
-		, pName=#{pName}
-		, price=#{price}
-		, brand=#{brand}
-		,
-		description=#{description}
-		where
-		pId=#{pId}
+			set	typeCode=#{typeCode}, pName=#{pName}, price=#{price}, brand=#{brand}, description=#{description}
+			where pId=#{pId}
 	</update>
 
 	<delete id="delete">
-		delete from product where pId = #{pId}
+		DELETE FROM product
+			WHERE pId = #{pId}
 	</delete>
 
 	<select id="selectListWithPaging" resultType="ProductVO">
@@ -130,10 +124,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                   from
                       product 
                   where rownum <= #{page} * #{perPageNum}
-              
-  
 		]]>
-				<include refid="searchSql"></include>
+				<include refid="searchSql" />
 		<![CDATA[    
 				)
 		  where rn > (#{page}-1) * #{perPageNum}
@@ -147,6 +139,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   from product
   where pId > 0 
 ]]>
-		<include refid="searchSql"></include>
+		<include refid="searchSql" />
 	</select>
 </mapper>

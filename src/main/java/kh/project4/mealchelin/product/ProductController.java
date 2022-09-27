@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import kh.project4.mealchelin.mapper.CommentMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -34,11 +35,8 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping(value = "/product")
 public class ProductController {
 	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
-	@Inject
+	@Autowired
 	private ProductService productService;
-
-	@Inject
-	private CommentMapper commentMapper;
 
 	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
 	public void productListPage(@ModelAttribute("cri") ProductCriteria cri, Model model) throws Exception {
@@ -69,7 +67,6 @@ public class ProductController {
 		model.addAttribute("productOne", productOne);
 		model.addAttribute("relatedList", relatedList);
 	}
-	
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public void search(Model model, @RequestParam(value = "keyword") String keyword) throws Exception {
@@ -79,7 +76,7 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public void registerGET(HttpServletRequest request, ProductVO product, Model model) throws Exception {
+	public void registerGET(HttpServletRequest request, ProductVO product, Model model) {
 		logger.info("// /product/register get호출");
 	}
 
@@ -135,8 +132,8 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String delete(HttpServletRequest request, @RequestParam(value = "pId") int pId) throws Exception {
-		logger.info("/product/delete pId=" + pId);
+	public String delete(HttpServletRequest request, int pId) throws Exception {
+		logger.info("/product/delete : {}", pId);
 		productService.delete(pId);
 		request.setAttribute("msg", "상품삭제 완료");
 		request.setAttribute("url", "adminProduct");
