@@ -19,38 +19,35 @@ public class MailSendService {
 	private String VerificationCode; 
 
 	public void makeRandomKey() {
-
-		Random rnd = new Random();
 		StringBuffer temp = new StringBuffer();
-		for (int i = 0; i < 10; i++) {
-			int rIndex = rnd.nextInt(3);
-			switch (rIndex) {
+		for (int i = 0; i < 10; i++) temp = addRandomChar(temp);
+		VerificationCode = temp.toString();
+	}
+
+	private StringBuffer addRandomChar(StringBuffer temp) {
+		Random random = new Random();
+		int randomIndex = random.nextInt(3);
+		switch (randomIndex) {
 			case 0:
-				// a-z
-				temp.append((char) ((int) (rnd.nextInt(26)) + 97));
+				temp.append((char) (random.nextInt(26) + 97)); // a-z
 				break;
 			case 1:
-				// A-Z
-				temp.append((char) ((int) (rnd.nextInt(26)) + 65));
+				temp.append((char) (random.nextInt(26) + 65)); // A-Z
 				break;
 			case 2:
-				// 0-9
-				temp.append((rnd.nextInt(10)));
+				temp.append((random.nextInt(10))); // 0-9
 				break;
-			}
 		}
-		System.out.println(temp);
-		VerificationCode = temp.toString();
+		return temp;
 	}
 
 	//메일 양식
 	public String setMail(String email) {
 		makeRandomKey();
-		String setFrom = "kh361team1@gmail.com";
-		String toMail = email;
+		String setFrom = "mealchelin@gmail.com";
 		String title = "[인증코드 확인] 안녕하세요! 밀키트 쇼핑몰 밀슐랭입니다";
 		String content = "인증코드: " + VerificationCode;
-		sendMail(setFrom, toMail, title, content);
+		sendMail(setFrom, email, title, content);
 		return VerificationCode;
 	}
 
@@ -68,25 +65,4 @@ public class MailSendService {
 			e.printStackTrace();
 		}
 	}
-
-	/*
-	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com" />
-		<property name="port" value="587" />
-		<property name="username" value="kh361team1@gmail.com" />
-		<property name="password" value="oclgzstuwxbveqgx"/>
-		<!-- 보안연결 SSL설정 -->
-		<property name="javaMailProperties">
-			<props>
-				 <prop key="mail.transport.protocol">smtp</prop>
-                <prop key="mail.smtp.auth">true</prop>
-                <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
-                <prop key="mail.smtp.starttls.enable">true</prop>
-                <prop key="mail.debug">true</prop>
-                <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
-				<prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
-			</props>
-		</property>
-	</bean>
-	 */
 }
