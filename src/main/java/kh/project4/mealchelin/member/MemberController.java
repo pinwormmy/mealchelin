@@ -36,16 +36,22 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/submitLogin.do", method = RequestMethod.POST)
-	public String submitLogin(MemberDTO member, HttpServletRequest request, HttpServletResponse response) throws Exception {		
+	public String submitLogin(MemberDTO member, HttpServletRequest request,
+							  HttpServletResponse response) throws Exception {
 		MemberDTO loginData = memberService.submitLogin(member); 			
 		if (loginData == null) // 비밀번호 틀리면 null값 들어옴		
 			return alertMsgAndGoUrl(request, "로그인 오류! ID와 비밀번호를 확인해주세요~!!", "login.do");
 		if (loginData.getMLevel() == -1) // 회원등급 -1 은 탈퇴한 계정
-			return alertMsgAndGoUrl(request, "탈퇴한 계정입니다. 다른 ID로 로그인해주세요~!!", "login.do");	
+			return alertMsgAndGoUrl(request, "탈퇴한 계정입니다. 다른 ID로 로그인해주세요~!!", "login.do");
+		getLoginSessionAndIdCookie(loginData, request, response);
+		return "redirect:/";
+	}
+
+	private void getLoginSessionAndIdCookie(MemberDTO loginData,
+											HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		session.setAttribute("member", loginData); // 회원가입 완료되면 해당 정보로 로그인도 해주기
-		setCookieForSaveId(response, request.getParameter("saveId"), loginData.getMId()); // 아이디저장 체크박스 확인 후, 쿠키 생성
-		return "redirect:/";
+		setCookieForSaveId(response, request.getParameter("saveId"), loginData.getMId()); // 체크박스 확인 후 쿠키생성
 	}
 	
 	// 아이디 저장용 쿠키 세팅
@@ -85,10 +91,14 @@ public class MemberController {
 	public String submitSignUp(MemberDTO member, HttpServletRequest request) throws Exception {
 		memberService.submitSignUp(member);
 		memberService.earnPointForNewMember(member.getMId(), 3000); // 신규가입시 3000포인트 증정	
+		loginWithSession(member, request); // 가입한 아이디로 로그인도 해주기
+		return alertMsgAndGoUrl(request, "회원가입되었습니다. 신규 가입 프로모션으로 3000포인트 증정!", "home");
+	}
+
+	private void loginWithSession(MemberDTO member, HttpServletRequest request) throws Exception {
 		MemberDTO loginData = memberService.submitLogin(member);
 		HttpSession session = request.getSession();
-		session.setAttribute("member", loginData); // 가입한 아이디로 로그인도 해주기
-		return alertMsgAndGoUrl(request, "회원가입되었습니다. 신규 가입 프로모션으로 3000포인트 증정!", "home");
+		session.setAttribute("member", loginData);
 	}
 
 	@RequestMapping(value = "/checkUniqueId.do")
@@ -145,21 +155,29 @@ public class MemberController {
     }
 
     @RequestMapping(value = "/email.do", method = RequestMethod.GET)
-    public String email(@RequestParam("mId") String mId,@RequestParam("email") String email, HttpSession session, HttpServletRequest request) throws Exception {
-
-    	MemberDTO member = memberService.selectMember(mId);
-
-    	if(member == null || !member.getEmail().equals(email)) {
-    		return alertMsgAndGoUrl(request, "회원정보를 찾을 수 없습니다. 아이디와 입력값을 확인해주세요.", "forgetPwd.do");
-    	} else if(member.getMLevel() == -1) {
-    		return alertMsgAndGoUrl(request, "탈퇴한 회원정보입니다.", "forgetPwd.do");
-    	} else {
-    		String VerificationCode = mailService.setMail(email);
-    		session.setAttribute("VerificationCode", VerificationCode);
-    		session.setAttribute("mId", mId);
-    		return "redirect:/changePwd.do";
-    	}
+    public String email(HttpServletRequest request) throws Exception {
+		String mId = request.getParameter("mId");
+		String email = request.getParameter("email");
+		return checkMemberStatusAndGoPwPage(mId, email, request); // 이메일 제대로 입력했으면 비번변경 페이지로
     }
+
+	private String checkMemberStatusAndGoPwPage(String mId, String email, HttpServletRequest request) throws Exception {
+		MemberDTO member = memberService.selectMember(mId);
+		HttpSession session = request.getSession();
+		if(member == null || !member.getEmail().equals(email))
+			return alertMsgAndGoUrl(request, "회원정보를 찾을 수 없습니다. 입력값을 확인해주세요.", "forgetPwd.do");
+		else if(member.getMLevel() == -1)
+			return alertMsgAndGoUrl(request, "탈퇴한 회원정보입니다.", "forgetPwd.do");
+		else
+			return setVerificationCodeAndGoChangePwd(mId, email, session);
+	}
+
+	private String setVerificationCodeAndGoChangePwd(String mId, String email, HttpSession session) {
+		String VerificationCode = mailService.setMail(email); // 이메일인증번호 발급
+		session.setAttribute("VerificationCode", VerificationCode);
+		session.setAttribute("mId", mId);
+		return "redirect:/changePwd.do";
+	}
 
     @RequestMapping(value = "/changePwd.do", method = RequestMethod.GET)
     public String changePwd() {
@@ -167,9 +185,9 @@ public class MemberController {
     }
 
     @RequestMapping(value = "/changePwd.do", method = RequestMethod.POST)
-    public String changePwd(@RequestParam String mId,@RequestParam String pw, HttpServletRequest request) throws Exception {
-    	MemberDTO member = memberService.selectMember(mId);
-    	member.setPw(pw);
+    public String changePwd(HttpServletRequest request) throws Exception {
+    	MemberDTO member = memberService.selectMember(request.getParameter("mId"));
+    	member.setPw(request.getParameter("pw"));
     	memberService.updatePwd(member);
     	return alertMsgAndGoUrl(request, "비밀번호가 변경되었습니다.", "login.do");
     }
@@ -187,10 +205,9 @@ public class MemberController {
 		return "member/myPage";
 	}
 
-	@RequestMapping(value = "/myPage.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/myPage.do", method = RequestMethod.POST) // 마이페이지 가는데 거 확인해야해?
 	public String myPage(Model model, MemberDTO member, HttpServletRequest request) throws Exception {
-		int result = memberService.checkPwd(member);
-		if (result == 1) {
+		if (memberService.checkPwd(member) == 1) { // 비번 맞으면
 			PointDTO point = memberService.showPoint(member.getMId());
 			model.addAttribute("point", point);
 			return "member/myPage";
@@ -219,17 +236,17 @@ public class MemberController {
 		return alertMsgAndGoUrl(request, "수정이 완료되었습니다.", "myPage.do");
 	}
 
-	@RequestMapping(value = "updatePwd", method = RequestMethod.POST)
-	public String updatePwd(@RequestParam("pw") String pw, HttpSession session, HttpServletRequest request)
-			throws Exception {
+	@RequestMapping(value = "/updatePwd.do", method = RequestMethod.POST)
+	public String updatePwd(HttpServletRequest request)	throws Exception {
+		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO) session.getAttribute("member");
-		member.setPw(pw);
+		member.setPw(request.getParameter("pw"));
 		memberService.updatePwd(member);
 		MemberDTO updateMember = memberService.selectMember(member.getMId());
 		session.setAttribute("member", updateMember);
 		return alertMsgAndGoUrl(request, "변경이 완료되었습니다.", "myPage.do");
 	}
-	
+
 	@RequestMapping(value = "/closeAccountByAdmin.do")
 	public String closeAccountByAdmin(String mId) throws Exception {
 		memberService.closeAccount(mId); // 일단 삭제는 안 하고 mLevel -1(별도로 '탈퇴상태' 코드 부여)두기.	
@@ -263,7 +280,7 @@ public class MemberController {
 		return "member/deleteAccount";
 	}
 	
-    @RequestMapping(value = "/adminPage.do", method = RequestMethod.GET)
+    @RequestMapping(value = "/adminPage.do")
     public String listSearch(@ModelAttribute("cri") MemberCriteria cri, Model model) throws Exception {
         log.info(cri.toString());
     	model.addAttribute("memberlist", memberService.selectMemberList(cri));

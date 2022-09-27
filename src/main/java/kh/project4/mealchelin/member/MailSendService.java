@@ -25,7 +25,6 @@ public class MailSendService {
 	}
 
 	private StringBuffer addRandomChar(StringBuffer temp) {
-
 		Random random = new Random();
 		int randomIndex = random.nextInt(3);
 		switch (randomIndex) {
@@ -45,7 +44,7 @@ public class MailSendService {
 	//메일 양식
 	public String setMail(String email) {
 		makeRandomKey();
-		String setFrom = "kh361team1@gmail.com";
+		String setFrom = "mealchelin@gmail.com";
 		String title = "[인증코드 확인] 안녕하세요! 밀키트 쇼핑몰 밀슐랭입니다";
 		String content = "인증코드: " + VerificationCode;
 		sendMail(setFrom, email, title, content);
