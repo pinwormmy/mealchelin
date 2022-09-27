@@ -46,7 +46,7 @@
 					<li><a class="active" href="<%=request.getContextPath()%>/adminPage.do">Member</a></li>
 					<li><a href="<%=request.getContextPath()%>/product/adminProduct">Product</a></li>
 					<li><a href="<%=request.getContextPath()%>/adminOrder.do">Order</a></li>
-					<li><a href="<%=request.getContextPath()%>/community/adminBoard.do">Board</a></li>
+					<li><a href="<%=request.getContextPath()%>/community/adminBoard">Board</a></li>
 				</ul>
 				<div class="search text-center">
 					<select name="searchType">
