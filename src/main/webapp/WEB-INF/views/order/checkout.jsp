@@ -60,12 +60,6 @@
                            <input type="text" class="form-control" name="oAddress_detail" id="user_address_detail" placeholder="">
                         </div>
                      </div>
-                     <!-- 국가까진 필요없을 듯합니다
-                     <div class="form-group">
-                        <label for="user_country">국가</label>
-                        <input type="text" class="form-control" id="user_country" placeholder="">
-                     </div>
-                      -->
                   </form>
                </div>
                <div class="block">
@@ -130,6 +124,10 @@
                         </li>
                         <li>
                            <span>배송비:</span>
+                           <span>무료</span>
+                        </li>
+                         <li>
+                           <span>포인트:</span>
                            <span>무료</span>
                         </li>
                      </ul>
