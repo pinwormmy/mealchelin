@@ -40,78 +40,64 @@
 </head>
 <body id="body">
 
+<%@ include file="../include/header.jspf"%>
 
-
-
-	<%@ include file="../include/header.jspf"%>
-
-	<section class="page-header">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="content">
-						<h1 class="page-name">관리자 페이지</h1>
-						<ol class="breadcrumb">
-							<li><a href="index.html">Home</a></li>
-							<li class="active">Admin Page</li>
-						</ol>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-
-	<section class="user-dashboard page-wrapper">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<ul class="list-inline dashboard-menu text-center">
-						<li><a href="<%=request.getContextPath()%>/adminPage.do">Member</a></li>
-						<li><a class="active"
-							href="<%=request.getContextPath()%>/product/adminProduct">Product</a></li>
-						<li><a href="<%=request.getContextPath()%>/adminOrder.do">Order</a></li>
-						<li><a
-							href="<%=request.getContextPath()%>/community/adminBoard.do">Board</a></li>
-					</ul>
-
-
-
-					<div class="dashboard-wrapper user-dashboard">
-						<div class="list-inline mt-10" id="searchBox">
-							<form role="form">
-
-								<select name="searchType">
-									<option value="null"
-										<c:out value="${cri.searchType == null?'selected':''}"/>>
-										---</option>
-									<option value="n"
-										<c:out value="${cri.searchType eq 'n'?'selected':''}"/>>
-										상품명</option>
-									<option value="b"
-										<c:out value="${cri.searchType eq 'b'?'selected':''}"/>>
-										브랜드</option>
-									<option value="d"
-										<c:out value="${cri.searchType eq 'd'?'selected':''}"/>>
-										상품설명</option>
-									<option value="nb"
-										<c:out value="${cri.searchType eq 'nb'?'selected':''}"/>>
-										상품명 OR 브랜드</option>
-									<option value="nd"
-										<c:out value="${cri.searchType eq 'nd'?'selected':''}"/>>
-										상품명 OR 상품설명</option>
-									<option value="nbd"
-										<c:out value="${cri.searchType eq 'nbd'?'selected':''}"/>>
-										상품명 OR 브랜드 OR 상품설명</option>
-								</select> <input type="text" name='keyword' id="keywordInput"
-									value='${cri.keyword }'>
-								<button class="btn btn-main btn-small btn-round" id='searchBtn'>Search</button>
-
-
+<section class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content">
+                    <h1 class="page-name">관리자 페이지</h1>
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active">Admin Page</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="user-dashboard page-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="list-inline dashboard-menu text-center">
+                    <li><a href="<%=request.getContextPath()%>/adminPage.do">Member</a></li>
+                    <li><a class="active"
+                        href="<%=request.getContextPath()%>/product/adminProduct">Product</a></li>
+                    <li><a href="<%=request.getContextPath()%>/adminOrder.do">Order</a></li>
+                    <li><a href="<%=request.getContextPath()%>/community/adminBoard.do">Board</a></li>
+                </ul>
+                <div class="dashboard-wrapper user-dashboard">
+                    <div class="list-inline mt-10" id="searchBox">
+                        <form role="form">
+                            <select name="searchType">
+                                <option value="null"
+                                    <c:out value="${cri.searchType == null?'selected':''}"/>>
+                                    ---</option>
+                                <option value="n"
+                                    <c:out value="${cri.searchType eq 'n'?'selected':''}"/>>
+                                    상품명</option>
+                                <option value="b"
+                                    <c:out value="${cri.searchType eq 'b'?'selected':''}"/>>
+                                    브랜드</option>
+                                <option value="d"
+                                    <c:out value="${cri.searchType eq 'd'?'selected':''}"/>>
+                                    상품설명</option>
+                                <option value="nb"
+                                    <c:out value="${cri.searchType eq 'nb'?'selected':''}"/>>
+                                    상품명 OR 브랜드</option>
+                                <option value="nd"
+                                    <c:out value="${cri.searchType eq 'nd'?'selected':''}"/>>
+                                    상품명 OR 상품설명</option>
+                                <option value="nbd"
+                                    <c:out value="${cri.searchType eq 'nbd'?'selected':''}"/>>
+                                    상품명 OR 브랜드 OR 상품설명</option>
+                            </select> <input type="text" name='keyword' id="keywordInput"
+                                value='${cri.keyword }'>
+                            <button class="btn btn-main btn-small btn-round" id='searchBtn'>Search</button>
 							</form>
 						</div>
-
-
 						<div class="table-responsive">
 							<table class="table">
 								<thead>
@@ -196,24 +182,22 @@
 		</div>
 	</section>
 
-	<script>
-		$(document).ready(
-				function() {
+<script>
+    $(document).ready(
+            function() {
 
-					$('#searchBtn').on(
-							"click",
-							function(event) {
-								self.location = "list"
-										+ '${pageMaker.makeQuery(1)}'
-										+ "&searchType="
-										+ $("select option:selected").val()
-										+ "&keyword="
-										+ $('#keywordInput').val();
-							});
+                $('#searchBtn').on(
+                        "click",
+                        function(event) {
+                            self.location = "list"
+                                    + '${pageMaker.makeQuery(1)}'
+                                    + "&searchType="
+                                    + $("select option:selected").val()
+                                    + "&keyword="
+                                    + $('#keywordInput').val();
+                        });
 
-				});
-	</script>
+            });
+</script>
 
-
-
-	<%@ include file="../include/footer.jspf"%>
+<%@ include file="../include/footer.jspf"%>

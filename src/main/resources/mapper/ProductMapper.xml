@@ -38,9 +38,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<insert id="insert" parameterType="ProductVO">
-		insert into product
-		values(pIdSeq.NEXTVAL, #{typeCode}, #{pName}, #{price},
-		#{brand}, #{description}, #{thumbnail}, #{image})
+		INSERT INTO PRODUCT(PID, TYPECODE, PNAME, PRICE, BRAND, DESCRIPTION, THUMBNAIL, IMAGE)
+			values(pIdSeq.NEXTVAL, #{typeCode}, #{pName}, #{price},	#{brand}, #{description}, #{thumbnail}, #{image})
 	</insert>
 
 	<update id="updateProduct">
@@ -76,7 +75,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     ]]>
 	</select>
 
-
 	<select id="countPaging" resultType="int">
 		select
 		count(pId)
@@ -84,16 +82,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		product
 	</select>
 
-
-
 	<select id="search" parameterType="String"
 		resultType="ProductVO">
 	<![CDATA[
 		select * from product where pName like CONCAT('%' || #{keyword}, '%') order by pId desc
 	]]>
 	</select>
-
-
 
 	<sql id="searchSql">
 		<if test="searchType != null">
