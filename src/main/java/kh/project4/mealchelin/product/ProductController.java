@@ -85,7 +85,7 @@ public class ProductController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String registerPost(HttpServletRequest request, ProductVO product) throws Exception {
-		logger.info("// /product/register post호출");
+		logger.info("// /product/register post호출 : {}", product);
 		productService.insert(product);
 		logger.info("// product.toString()=" + product.toString());
 		request.setAttribute("msg", "상품등록 완료");

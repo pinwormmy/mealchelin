@@ -18,5 +18,4 @@ public class ProductVO {
 	
 	private MultipartFile uploadfile;
 	
-	
 }

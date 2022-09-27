@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<insert id="insert" parameterType="ProductVO">
-		insert into product
+		INSERT INTO PRODUCT(PID, TYPECODE, PNAME, PRICE, BRAND, DESCRIPTION, THUMBNAIL, IMAGE)
 			values(pIdSeq.NEXTVAL, #{typeCode}, #{pName}, #{price},	#{brand}, #{description}, #{thumbnail}, #{image})
 	</insert>
 

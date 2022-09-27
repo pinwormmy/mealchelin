@@ -6,34 +6,33 @@
 <head>
 <title>밀슐랭 | 관리자 페이지</title>
 <style>
-	.result_card img{
-		max-width: 100%;
-	    height: auto;
-	    display: block;
-	    padding: 5px;
-	    margin-top: 10px;
-	    margin: auto;	
-	}
-	.result_card {
-		position: relative;
-	}
-	.imgDeleteBtn, .thumbDeleteBtn{
-	    position: absolute;
-	    top: 10px;
-	    right: 10px;
-	    background-color: #ef7d7d;
-	    color: wheat;
-	    font-weight: 900;
-	    width: 30px;
-	    height: 30px;
-	    border-radius: 50%;
-	    line-height: 26px;
-	    text-align: center;
-	    border: none;
-	    display: block;
-	    cursor: pointer;	
-	}
-	
+.result_card img{
+    max-width: 100%;
+    height: auto;
+    display: block;
+    padding: 5px;
+    margin-top: 10px;
+    margin: auto;
+}
+.result_card {
+    position: relative;
+}
+.imgDeleteBtn, .thumbDeleteBtn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ef7d7d;
+    color: wheat;
+    font-weight: 900;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    line-height: 26px;
+    text-align: center;
+    border: none;
+    display: block;
+    cursor: pointer;
+}
 </style>
 </head>
 <body id="body">
@@ -54,57 +53,50 @@
 								<span style="font-size: 0.8em;">&nbsp; 1:한식 &nbsp; 2:양식 &nbsp; 3:중식 &nbsp; 4:일식 &nbsp; 5:기타 &nbsp; </span>
 							</div>
 							<div class="form-group">
-								<input type="text" class="form-control" placeholder="*상품명"
-									name="pName" id="pName">
+								<input type="text" class="form-control" placeholder="*상품명" name="pName" id="pName">
 							</div>
 							<div class="form-group">
-								<input type="text" class="form-control" placeholder="*가격"
-									name="price" id="price">
+								<input type="text" class="form-control" placeholder="*가격" name="price" id="price">
 							</div>
 							<div class="form-group">
-								<input type="text" class="form-control" placeholder="*브랜드"
-									name="brand" id="brand">
+								<input type="text" class="form-control" placeholder="*브랜드" name="brand" id="brand">
 							</div>
 							<div class="form-group">
-								<input type="text" class="form-control" placeholder="상세설명"
-									name="description" id="description">
+								<input type="text" class="form-control" placeholder="상세설명" name="description" id="description">
 							</div>
 							<div class="form-group">
 								<span style="font-size: 0.8em;">썸네일이미지 [이미지파일만 첨부가능]</span>
-								<input type="file" class="form-control"
-									placeholder="썸네일(나중에 첨부로 바꾸기)" name="thumbnailFile" id="thumbnailFile">
-								<div id="thumbnailUploadResult">
-								</div>
+								<input type="file" class="form-control"	placeholder="썸네일" name="thumbnailFile" id="thumbnailFile">
+								<div id="thumbnailUploadResult"></div>
 							</div>
 							<div class="form-group">
 								<span style="font-size: 0.8em;">상세이미지 [이미지파일만 첨부가능]</span>
 								<input type="file" class="form-control"
-									placeholder="이미지(나중에 첨부로 바꾸기)" name="imageFile" id="imageFile">
-								<div id="imageUploadResult">
-								</div>
+									placeholder="이미지" name="imageFile" id="imageFile">
+								<div id="imageUploadResult"></div>
 							</div>
 							<div class="text-center">
-								<button type="submit" class="btn btn-main btn-medium text-center"
-									onclick="checkForm();">등록하기</button>
+								<button type="button" class="btn btn-main btn-medium text-center" onclick="checkForm();">등록하기</button>
 							</div>
 						</form>
-						
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 
+<%@ include file="../include/footer.jspf"%>
+
 <script type=text/javascript>
 
+    //alert("js test 01");
 	let insertProductForm = document.getElementById("insertProduct");
-
 	function checkForm() {
-		if (insertProductForm.typeCode.value == ""
-				|| insertProductForm.pName.value == ""
-				|| insertProductForm.price.value == ""
-				|| insertProductForm.brand.value == "") {
-			alert("분류코드,상품명,단가,브랜드는 필수입력!!");
+		if (insertProductForm.typeCode.value == "" || insertProductForm.pName.value == ""
+				|| insertProductForm.price.value == "" || insertProductForm.brand.value == ""
+				|| insertProductForm.description.value == "" || insertProductForm.thumbnail == null
+				|| insertProductForm.image == null) {
+			alert("전 항목 입력해야합니다!(이미지 첨부 포함)");
 			insertProductForm.typeCode.focus();
 			return false;
 		}
@@ -261,6 +253,6 @@
 			}
 		});
 	}
-</script>
 
-<%@ include file="../include/footer.jspf"%>
+</script>
+</body>
