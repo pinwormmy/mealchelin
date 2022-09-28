@@ -1,5 +1,3 @@
-<%@page import="com.mealkit.order.OrderService"%>
-<%@page import="com.mealkit.order.CartVO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -10,8 +8,6 @@
 <%@ page import="java.sql.ResultSet"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
 
 <%@ include file="../include/header.jspf"%>
 <style>
@@ -158,8 +154,6 @@
 								<a href="<%=request.getContextPath()%>/checkout.do?mId=${member.MId}"
 									class="btn btn-main pull-right" onclick="cart_add()">주문하기</a>
 							</div>
-
-
 						</div>
 					</div>
 				</div>

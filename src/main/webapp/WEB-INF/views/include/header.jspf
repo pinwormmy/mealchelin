@@ -45,7 +45,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 	href="<%=request.getContextPath()%>/plugins/themefisher-font/style.css">
 <!-- bootstrap.min css -->
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/plugins/bootstrap/css/bootstrap.min.css">
+	href="/plugins/bootstrap/css/bootstrap.min.css">
 
 <!-- Animate css -->
 <link rel="stylesheet" href="<%=request.getContextPath()%>/plugins/animate/animate.css">
@@ -56,6 +56,14 @@ FACEBOOK: https://www.facebook.com/themefisher
 <!-- Main Stylesheet -->
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 
+<style>
+#logo {
+    font-size: 36px;
+    font-weight: 500;
+    font-style: oblique;
+    text-decoration: underline;
+}
+</style>
 </head>
 
 <body id="body">
@@ -83,7 +91,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 									fill="#000000">
 
 									<text id="AVIATO">
-										<tspan x="108.94" y="325">밀슐랭</tspan>
+										<span id="logo"><h1 style="font-weight:700;">MEALCHELIN</h1></span>밀키트 쇼핑몰, 밀슐랭
 									</text>
 								</g>
 							</g>
