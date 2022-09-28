@@ -45,7 +45,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 	href="<%=request.getContextPath()%>/plugins/themefisher-font/style.css">
 <!-- bootstrap.min css -->
 <link rel="stylesheet"
-	href="/plugins/bootstrap/css/bootstrap.min.css">
+	href="<%=request.getContextPath()%>/plugins/bootstrap/css/bootstrap.min.css">
 
 <!-- Animate css -->
 <link rel="stylesheet" href="<%=request.getContextPath()%>/plugins/animate/animate.css">
