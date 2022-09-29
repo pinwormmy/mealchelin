@@ -101,8 +101,7 @@ input[type="file"] {
 							<c:if test="${member == null}">
 								<!-- 로그인 정보가 없을 때 -->
 								<a href="<%=request.getContextPath()%>/notLoginCart.do">
-									<button type="button" class="btn btn-main mt-20" id="cartBtn">Add
-										To Cart</button>
+									<button type="button" class="btn btn-main mt-20" id="cartBtn">장바구니 담기</button>
 								</a>
 							</c:if>
 							<c:if test="${member != null}">
@@ -110,7 +109,7 @@ input[type="file"] {
 								<input type="hidden" name=mId value="${member.MId}">
 								<input type="hidden" name="pId" value="${productOne.PId}">
 								<button type="button" class="btn btn-main mt-20" id="cartBtn"
-									onclick="checkQuantity();">Add To Cart</button>
+									onclick="checkQuantity();">장바구니 담기</button>
 							</c:if>
 
 						</form>
@@ -154,9 +153,9 @@ var replyPage = 1;
 					<div class="tabCommon mt-20">
 						<ul class="nav nav-tabs">
 							<li class="active"><a data-toggle="tab" href="#details"
-								aria-expanded="true">Details</a></li>
+								aria-expanded="true">세부내용</a></li>
 							<li class=""><a data-toggle="tab" href="#reviews"
-								id="reviewsDiv" aria-expanded="false">Reviews</a></li>
+								id="reviewsDiv" aria-expanded="false">상품리뷰</a></li>
 						</ul>
 						<div class="tab-content patternbg">
 							<div id="details" class="tab-pane fade active in">
@@ -178,7 +177,7 @@ var replyPage = 1;
 											class="form-control" placeholder="Comment" style="margin-bottom:10px">
 										<div class="text-center">
 											<label for="fileupload" class="custom-file-upload"> <i
-												class="fa fa-cloud-upload"></i> Upload Image
+												class="fa fa-cloud-upload"></i> 사진 올리기
 											</label> <input style="visibility: hidden;" type='file'
 												id='fileupload' name="fileupload[]" multiple="multiple"
 												accept=".png, .jpg, .jpeg" />
@@ -186,7 +185,7 @@ var replyPage = 1;
 											<div id="uploadedList" class='uploadedList'></div>
 
 											<button id="submitReview" type="submit"
-												class="btn btn-main text-center">submit Comment</button>
+												class="btn btn-main text-center">리뷰 올리기</button>
 										</div>
 									</form>
 								</div>

@@ -62,11 +62,10 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="list-inline dashboard-menu text-center">
-                    <li><a href="<%=request.getContextPath()%>/adminPage.do">Member</a></li>
-                    <li><a class="active"
-                        href="<%=request.getContextPath()%>/product/adminProduct">Product</a></li>
-                    <li><a href="<%=request.getContextPath()%>/adminOrder.do">Order</a></li>
-                    <li><a href="<%=request.getContextPath()%>/community/adminBoard.do">Board</a></li>
+                    <li><a href="<%=request.getContextPath()%>/adminPage.do">회원관리</a></li>
+                    <li><a class="active" href="<%=request.getContextPath()%>/product/adminProduct">상품관리</a></li>
+                    <li><a href="<%=request.getContextPath()%>/adminOrder.do">주문관리</a></li>
+                    <li><a href="<%=request.getContextPath()%>/community/adminBoard">게시글관리</a></li>
                 </ul>
                 <div class="dashboard-wrapper user-dashboard">
                     <div class="list-inline mt-10" id="searchBox">
@@ -140,9 +139,9 @@
 
 				<ul class="list-inline mt-10" id="productBtn">
 					<li><a href="<%=request.getContextPath()%>/product/register"
-						class="btn btn-main btn-medium btn-round">Register</a></li>
+						class="btn btn-main btn-medium btn-round">게시</a></li>
 					<li><a href="<%=request.getContextPath()%>/product/listAdmin"
-						class="btn btn-main btn-medium btn-round">update / delete</a></li>
+						class="btn btn-main btn-medium btn-round">수정 / 삭제</a></li>
 				</ul>
 	
 			</div>

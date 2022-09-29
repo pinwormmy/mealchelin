@@ -47,7 +47,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="box-header">
-					<h3 class="box-title">READ BOARD</h3>
+					<h3 class="box-title">게시글 읽기</h3>
 				</div>
 
 				<form name="readForm" role="form" method="post">
@@ -56,24 +56,24 @@
 				</form>
 
 				<div class="form-group">
-					<label for="mId">Writer</label> <input type="text" name='mId'
+					<label for="mId">작성자</label> <input type="text" name='mId'
 						class="form-control" value="${CommunityVO.MId}"
 						readonly="readonly">
 				</div>
 
 				<div class="form-group">
-					<label for="title">Title</label> <input type="text" name='title'
+					<label for="title">제목</label> <input type="text" name='title'
 						class="form-control" value="${CommunityVO.title}"
 						readonly="readonly">
 				</div>
 
 				<div class="form-group">
-					<label for="content">Content</label>
+					<label for="content">내용</label>
 					<textarea class="form-control" name="content" rows="7"
 						readonly="readonly">${CommunityVO.content}</textarea>
 				</div>
 				
-				<label>File</label>
+				<label>첨부파일</label>
 				<div class="form-group" style="border: 1px solid #dbdbdb;">
 					<c:forEach var="file" items="${file}">
 						<a href="#" onclick="fn_fileDown('${file.FILE_NO}'); return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE}kb)<br>
@@ -82,11 +82,10 @@
 				
 				<div class="box-footer">
 				<c:if test = "${sessionScope.member.MId == CommunityVO.MId || sessionScope.member.MLevel == '2'}">
-					<button type="submit" class="btn btn-main" id="update">Modify</button>
-					<button type="submit" class="btn btn-main" id="delete">REMOVE</button>
+					<button type="submit" class="btn btn-main" id="update">수정</button>
+					<button type="submit" class="btn btn-main" id="delete">삭제</button>
 				</c:if>	
-					<button type="submit" class="btn btn-main" id="list">LIST
-						ALL</button>
+					<button type="submit" class="btn btn-main" id="list">목록</button>
 				</div>
 				
 			</div>

@@ -108,14 +108,14 @@ FACEBOOK: https://www.facebook.com/themefisher
 							<!-- 로그인 정보가 없을 때 -->
 							<li class="dropdown cart-nav dropdown-slide"><a
 								href="<%=request.getContextPath()%>/notLoginCart.do"
-								class="dropdown-toggle"><i class="tf-ion-android-cart"></i>Cart</a>
+								class="dropdown-toggle"><i class="tf-ion-android-cart"></i>장바구니</a>
 							</li>
 						</c:if>
 						<c:if test="${member != null and member.MLevel == 1}">
 							<!-- 일반회원 모드 -->
 							<li class="dropdown cart-nav dropdown-slide"><a
 								href="<%=request.getContextPath()%>/cart.do?mId=${member.MId}"
-								class="dropdown-toggle"><i class="tf-ion-android-cart"></i>Cart</a>
+								class="dropdown-toggle"><i class="tf-ion-android-cart"></i>장바구니</a>
 							</li>
 						</c:if>
 						<c:if test="${member != null and member.MLevel == 2}">
@@ -184,21 +184,21 @@ FACEBOOK: https://www.facebook.com/themefisher
 							<!-- 로그인 정보가 없을 때 -->
 							<li class="dropdown cart-nav dropdown-slide"><a
 								href="<%=request.getContextPath()%>/notLoginCart.do"
-								class="dropdown-toggle">Order</a></li>
+								class="dropdown-toggle">주문내역</a></li>
 						</c:if>
 
 						<c:if test="${member != null and member.MLevel == 1}">
 							<!-- Mlevel.1 -->
 							<li class="dropdown cart-nav dropdown-slide"><a
 								href="<%=request.getContextPath()%>/order.do?mId=${member.MId}"
-								class="dropdown-toggle">Order</a></li>
+								class="dropdown-toggle">주문내역</a></li>
 						</c:if>
 
 						<c:if test="${member != null and member.MLevel == 2}">
 							<%-- <!-- Mlevel.2 -->
 							<li class="dropdown cart-nav dropdown-slide"><a
 								href="<%=request.getContextPath()%>/orderAdmin.do"
-								class="dropdown-toggle">Order</a></li> --%>
+								class="dropdown-toggle">주문내역</a></li> --%>
 						</c:if>
 
 						<!-- /Order -->
@@ -211,7 +211,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 						<li class="dropdown search dropdown-slide"><a href="#!"
 							class="dropdown-toggle" data-toggle="dropdown"
 							data-hover="dropdown"><i class="tf-ion-ios-search-strong"></i>
-								Search</a>
+								검색</a>
 							<ul class="dropdown-menu search-dropdown">
 								<li>
 									<form action="<%=request.getContextPath()%>/product/search" role="form">
@@ -226,22 +226,22 @@ FACEBOOK: https://www.facebook.com/themefisher
 						<li class="dropdown dropdown-slide"><a href="#!"
 							class="dropdown-toggle" data-toggle="dropdown"
 							data-hover="dropdown" data-delay="350" role="button"
-							aria-haspopup="true" aria-expanded="false"> LogIn <span
+							aria-haspopup="true" aria-expanded="false"> 로그인 <span
 								class="tf-ion-ios-arrow-down"></span></a>
 							<ul class="dropdown-menu">
 								<c:if test="${member == null}">
-									<li><a href="<%=request.getContextPath()%>/login.do">logIn</a></li>
-									<li><a href="<%=request.getContextPath()%>/signUp.do">signUp</a></li>
+									<li><a href="<%=request.getContextPath()%>/login.do">로그인</a></li>
+									<li><a href="<%=request.getContextPath()%>/signUp.do">회원가입</a></li>
 								</c:if>
 								<c:if test="${member != null and member.MLevel == 1}">
 									<li>${member.MName} 님께서 로그인 중입니다.</li>
-									<li><a href="<%=request.getContextPath()%>/checkPwd.do">My Page</a></li>
-									<li><a href="<%=request.getContextPath()%>/logout.do">Logout</a></li>
+									<li><a href="<%=request.getContextPath()%>/checkPwd.do">마이페이지</a></li>
+									<li><a href="<%=request.getContextPath()%>/logout.do">로그아웃</a></li>
 								</c:if>
 								<c:if test="${member != null and member.MLevel == 2}">
 									<li>[관리자 모드]<br> ${member.MName} 님께서 로그인 중입니다.</li>
-									<li><a href="<%=request.getContextPath()%>/adminPage.do">Admin Page</a></li>
-									<li><a href="<%=request.getContextPath()%>/logout.do">Logout</a></li>
+									<li><a href="<%=request.getContextPath()%>/adminPage.do">관리자 페이지</a></li>
+									<li><a href="<%=request.getContextPath()%>/logout.do">로그아웃</a></li>
 								</c:if>
 							</ul></li>
 
@@ -279,7 +279,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 
 									<!-- Home -->
 									<li class="dropdown "><a
-										href="<%=request.getContextPath()%>/">Home</a>
+										href="<%=request.getContextPath()%>/">메인으로</a>
 									</li>
 									<!-- / Home -->
 
@@ -288,7 +288,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 									<li class="dropdown dropdown-slide"><a href="#!"
 										class="dropdown-toggle" data-toggle="dropdown"
 										data-hover="dropdown" data-delay="350" role="button"
-										aria-haspopup="true" aria-expanded="false">Shop <span
+										aria-haspopup="true" aria-expanded="false">카테고리<span
 											class="tf-ion-ios-arrow-down"></span></a>
 										<ul class="dropdown-menu">
 											<li><a href="<%=request.getContextPath()%>/product/listAll?page=1">all</a></li>
@@ -306,42 +306,17 @@ FACEBOOK: https://www.facebook.com/themefisher
 										</ul></li>
 									<!-- / shop -->
 
-
-									<!-- 추후 다른 게시판 구현하게 되면 메뉴 수정하는 걸로-->
-									<!-- Board -->
-									<li class="dropdown dropdown-slide"><a href="#!"
-										class="dropdown-toggle" data-toggle="dropdown"
-										data-hover="dropdown" data-delay="350" role="button"
-										aria-haspopup="true" aria-expanded="false"> Board <span
-											class="tf-ion-ios-arrow-down"></span></a>
-
-										<ul class="dropdown-menu">
-											<li><a
-												href="<%=request.getContextPath()%>">Notice</a></li>
-											<li><a
-												href="<%=request.getContextPath()%>">Q&A</a></li>
-											<li><a
-												href="<%=request.getContextPath()%>">Review</a></li>
-										</ul></li>
-									<!-- Board -->						
-									<!-- Notice -->
-									<!--
-									<li class="dropdown "><a
-										href="<%=request.getContextPath()%>">Notice</a>
-									</li>
-									-->
-									<!-- / Notice -->
 									
 									
 									<!-- Community -->
 									<li class="dropdown "><a
-												href="<%=request.getContextPath()%>/community/list">Community</a>
+												href="<%=request.getContextPath()%>/community/list">커뮤니티</a>
 									</li>
 									<!-- Community -->
 									
 									<!-- About Us -->
 									<li class="dropdown "><a
-										href="<%=request.getContextPath()%>/about">About Us</a>
+										href="<%=request.getContextPath()%>/about">팀원소개</a>
 									</li>
 									<!-- / About Us -->
 									

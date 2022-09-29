@@ -35,7 +35,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="content">
-						<h1 class="page-name">Community</h1>
+						<h1 class="page-name">커뮤니티</h1>
 					</div>
 				</div>
 			</div>
@@ -111,7 +111,7 @@
 									<c:if test="${sessionScope.member.MId !=null}">
 										<div id="write_btn">
 											<a class="btn btn-main"
-												href="<%=request.getContextPath()%>/community/write">Write</a>
+												href="<%=request.getContextPath()%>/community/write">글쓰기</a>
 										</div>
 									</c:if>
 								</div>
