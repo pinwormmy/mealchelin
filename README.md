@@ -1,4 +1,4 @@
-# mealchelin  
+# ___MEALCHELIN___  
 KH361오후반 Team1 네번째 프로젝트  
 
 밀키트 쇼핑몰 - **밀슐랭**    
