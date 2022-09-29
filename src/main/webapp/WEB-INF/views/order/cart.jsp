@@ -65,7 +65,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="content">
-					<h1 class="page-name">Cart</h1>
+					<h1 class="page-name">장바구니</h1>
 					<ol class="breadcrumb">
 						<li><a href="<%=request.getContextPath()%>/index.do">Home</a></li>
 						<li class="active">cart</li>

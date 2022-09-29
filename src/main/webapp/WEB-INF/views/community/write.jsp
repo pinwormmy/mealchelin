@@ -33,7 +33,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="content">
-					<h1 class="page-name">Register</h1>
+					<h1 class="page-name">게시글 작성하기</h1>
 				</div>
 				<div class="table-responsive">
 					<form name="writeForm" class="text-left clearfix" method="post"
@@ -59,8 +59,8 @@
 								</tr>
 								<tr>
 									<td>
-										<button type="submit" class="btn btn-main text-center">Register</button>
-										<button id="fileAdd_btn" class ="btn btn-main text-center" type="button">Add file</button>
+										<button type="submit" class="btn btn-main text-center">작성하기</button>
+										<button id="fileAdd_btn" class ="btn btn-main text-center" type="button">파일첨부</button>
 									</td>
 								</tr>
 							</tbody>

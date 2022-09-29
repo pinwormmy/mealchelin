@@ -78,14 +78,12 @@
 			<div class="row">
 				<div class="col-md-12">
 					<ul class="list-inline dashboard-menu text-center">
-						<li><a href="<%=request.getContextPath()%>/adminPage.do">Member</a></li>
+						<li><a href="<%=request.getContextPath()%>/adminPage.do">회원관리</a></li>
 						<li><a
-							href="<%=request.getContextPath()%>/product/adminProduct">Product</a></li>
+							href="<%=request.getContextPath()%>/product/adminProduct">상품관리</a></li>
 						<li><a class="active"
-							href="<%=request.getContextPath()%>/adminOrder.do">Order</a></li>
-						<li><a
-							href="<%=request.getContextPath()%>/community/adminBoard.do">Board</a></li>
-					</ul>
+							href="<%=request.getContextPath()%>/adminOrder.do">주문관리</a></li>
+					    <li><a href="<%=request.getContextPath()%>/community/adminBoard">게시글관리</a></li>
 
 					<!--  시간이 된다면 검색 기능 넣기 -->
 					<div class="search-wrap">

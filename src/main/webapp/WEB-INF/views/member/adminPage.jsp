@@ -43,10 +43,10 @@
 		<div class="row">
 			<div class="col-md-12">
 				<ul class="list-inline dashboard-menu text-center">
-					<li><a class="active" href="<%=request.getContextPath()%>/adminPage.do">Member</a></li>
-					<li><a href="<%=request.getContextPath()%>/product/adminProduct">Product</a></li>
-					<li><a href="<%=request.getContextPath()%>/adminOrder.do">Order</a></li>
-					<li><a href="<%=request.getContextPath()%>/community/adminBoard">Board</a></li>
+					<li><a class="active" href="<%=request.getContextPath()%>/adminPage.do">회원관리</a></li>
+                    <li><a href="<%=request.getContextPath()%>/product/adminProduct">상품관리</a></li>
+                    <li><a href="<%=request.getContextPath()%>/adminOrder.do">주문관리</a></li>
+                    <li><a href="<%=request.getContextPath()%>/community/adminBoard">게시글관리</a></li>
 				</ul>
 				<div class="search text-center">
 					<select name="searchType">

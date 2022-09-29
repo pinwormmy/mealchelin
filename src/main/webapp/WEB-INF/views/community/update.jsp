@@ -82,7 +82,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="box-header">
-					<h3 class="box-title">Update BOARD</h3>
+					<h3 class="box-title">게시글 수정</h3>
 				</div>
 				<div class="table-responsive">
 					<form name="updateForm" role="form" method="post"
@@ -144,8 +144,8 @@
 							</tbody>
 						</table>
 						<div>
-							<button type="submit" class="btn btn-main">SAVE</button>
-							<button type="submit" class="btn btn-main" id="Cancel">CANCEL</button>
+							<button type="submit" class="btn btn-main">수정</button>
+							<button type="submit" class="btn btn-main" id="Cancel">취소</button>
 							<button id="fileAdd_btn" class="btn btn-main text-center"
 								type="button">Add file</button>
 						</div>

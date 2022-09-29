@@ -13,13 +13,11 @@
 						data-delay-in=".1">한식 KOREAN FOOD</p>
 					<h1 data-duration-in=".3" data-animation-in="fadeInUp"
 						data-delay-in=".5">
-						Tangy, salty, sweet and spicy.<br> Korean food is all of
-						that.
+						우리 입맛에 맞는 정겨운 맛
 					</h1>
 					<a data-duration-in=".3" data-animation-in="fadeInUp"
 						data-delay-in=".8" class="btn"
-						href="<%=request.getContextPath()%>/product/listType?typeCode=1">Shop
-						Now</a>
+						href="<%=request.getContextPath()%>/product/listType?typeCode=1">둘러보기</a>
 				</div>
 			</div>
 		</div>
@@ -33,13 +31,11 @@
 						data-delay-in=".1">양식 WESTERN FOOD</p>
 					<h1 data-duration-in=".3" data-animation-in="fadeInUp"
 						data-delay-in=".5">
-						Western foods are an expression <br> of the people and their
-						experiences.
+						양식에서 서양 사람들의<br> 경험과 표현을 느껴보세요
 					</h1>
 					<a data-duration-in=".3" data-animation-in="fadeInUp"
 						data-delay-in=".8" class="btn"
-						href="<%=request.getContextPath()%>/product/listType?typeCode=2">Shop
-						Now</a>
+						href="<%=request.getContextPath()%>/product/listType?typeCode=2">둘러보기</a>
 				</div>
 			</div>
 		</div>
@@ -53,12 +49,11 @@
 						data-delay-in=".1">중식 CHINESE FOOD</p>
 					<h1 data-duration-in=".3" data-animation-in="fadeInUp"
 						data-delay-in=".5">
-						Chinese cuisine is based on <br> years of study and wisdom.
+						다채롭고 이색적인 중화 요리
 					</h1>
 					<a data-duration-in=".3" data-animation-in="fadeInUp"
 						data-delay-in=".8" class="btn"
-						href="<%=request.getContextPath()%>/product/listType?typeCode=3">Shop
-						Now</a>
+						href="<%=request.getContextPath()%>/product/listType?typeCode=3">둘러보기</a>
 				</div>
 			</div>
 		</div>
@@ -112,7 +107,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="title text-center">
-				<h2>New Arrivals</h2>
+				<h2>오늘의 신상</h2>
 			</div>
 		</div>
 		<div class="row">
