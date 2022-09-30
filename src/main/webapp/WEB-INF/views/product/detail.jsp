@@ -183,9 +183,8 @@ var replyPage = 1;
 												accept=".png, .jpg, .jpeg" />
 
 											<div id="uploadedList" class='uploadedList'></div>
-
 											<button id="submitReview" type="submit"
-												class="btn btn-main text-center">리뷰 올리기</button>
+											class="btn btn-main text-center">리뷰 올리기</button>
 										</div>
 									</form>
 								</div>
