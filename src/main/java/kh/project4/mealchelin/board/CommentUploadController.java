@@ -31,7 +31,7 @@ public class CommentUploadController {
 
 	private static final Logger logger = LoggerFactory.getLogger(CommentUploadController.class);
 
-	private String fileuploadPath="C:\\upload";
+	private String fileuploadPath="C:\\uploadfiles\\upload";
 
 	@RequestMapping(value = "/fileuploadForm", method = RequestMethod.GET)
 	public void uploadForm() {
