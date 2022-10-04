@@ -16,9 +16,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="selectNewProductList" resultType="ProductVO">
-	<![CDATA[
-		SELECT * FROM (SELECT ROWNUM RNUM, PRODUCT.* FROM PRODUCT ORDER BY pId DESC) WHERE RNUM <= 6
-	]]>
+		<![CDATA[
+		SELECT * FROM
+			(SELECT * FROM PRODUCT
+				ORDER BY pId DESC)
+			WHERE ROWNUM <= 12
+		]]>
 	</select>
 
 	<select id="selectRelatedList" resultType="ProductVO">

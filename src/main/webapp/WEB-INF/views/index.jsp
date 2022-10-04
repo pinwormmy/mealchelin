@@ -60,51 +60,8 @@
 	</div>
 </div>
 
-<%-- <section class="product-category section">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="title text-center">
-					<h2>Product Category</h2>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="category-box">
-					<a href="#!">
-						<img src="<%=request.getContextPath()%>/images/shop/category/category-1.jpg" alt="" />
-						<div class="content">
-							<h3>Clothes Sales</h3>
-							<p>Shop New Season Clothing</p>
-						</div>
-					</a>	
-				</div>
-				<div class="category-box">
-					<a href="#!">
-						<img src="<%=request.getContextPath()%>/images/shop/category/category-2.jpg" alt="" />
-						<div class="content">
-							<h3>Smart Casuals</h3>
-							<p>Get Wide Range Selection</p>
-						</div>
-					</a>	
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="category-box category-box-2">
-					<a href="#!">
-						<img src="<%=request.getContextPath()%>/images/shop/category/category-3.jpg" alt="" />
-						<div class="content">
-							<h3>Jewellery</h3>
-							<p>Special Design Comes First</p>
-						</div>
-					</a>	
-				</div>
-			</div>
-		</div>
-	</div>
-</section> --%>
-
 <section class="products section bg-gray">
-	<div class="container">
+	<div class="container" style="padding: 0;">
 		<div class="row">
 			<div class="title text-center">
 				<h2>오늘의 신상</h2>
@@ -113,7 +70,7 @@
 		<div class="row">
 
 			<c:forEach var="productList" items="${productList}">
-				<div class="col-md-4">
+				<div class="col-md-4" style="width:30%; padding: 0 10px 0 10px;">
 					<div class="product-item">
 						<div class="product-thumb">
 							<img class="img-responsive"
@@ -124,8 +81,6 @@
 									<li><a
 										href="<%=request.getContextPath()%>/product/detail?pId=${productList.PId}"><i
 											class="tf-ion-ios-search-strong"></i></a></li>
-											
-											
 									<c:if test="${member == null}">
 										<!-- 로그인 정보가 없을 때 -->
 										<li><a
@@ -146,8 +101,7 @@
 						</div>
 						<div class="product-content">
 							<h4>
-								<a
-									href="<%=request.getContextPath()%>/product/detail?pId=${productList.PId}">${productList.PName}</a>
+								<a href="<%=request.getContextPath()%>/product/detail?pId=${productList.PId}">${productList.PName}</a>
 							</h4>
 							<p class="price">${productList.price}원
 							</p>
