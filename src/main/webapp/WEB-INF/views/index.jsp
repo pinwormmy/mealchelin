@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="./include/header.jspf"%>
+<%@ include file="./include/sidebar.jspf"%>
 
 <div class="hero-slider">
 	<div class="slider-item th-fullpage hero-area"
@@ -81,6 +82,7 @@
 									<li><a
 										href="<%=request.getContextPath()%>/product/detail?pId=${productList.PId}"><i
 											class="tf-ion-ios-search-strong"></i></a></li>
+
 									<c:if test="${member == null}">
 										<!-- 로그인 정보가 없을 때 -->
 										<li><a
@@ -91,7 +93,7 @@
 									<c:if test="${member != null}">
 										<!-- 로그인 정보가 있을 때 -->
 										<input type="hidden" name=mId value="${member.MId}">
-                  						<input type="hidden" name="pId" value="${productList.PId}">		
+                  						<input type="hidden" name="pId" value="${productList.PId}">
 										<li><a
 											href="<%=request.getContextPath()%>/addCart.do?mId=${member.MId}&pId=${productList.PId}&cquantity=1"><i
 												class="tf-ion-android-cart"></i></a></li>
@@ -112,6 +114,5 @@
 		</div>
 	</div>
 </section>
-
 
 <%@ include file="./include/footer.jspf"%>
