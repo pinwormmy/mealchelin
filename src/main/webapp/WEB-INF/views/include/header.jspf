@@ -202,11 +202,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 						</c:if>
 
 						<!-- /Order -->
-						
-						
-						
-						
-						
+
 						<!-- Search -->
 						<li class="dropdown search dropdown-slide"><a href="#!"
 							class="dropdown-toggle" data-toggle="dropdown"
@@ -244,7 +240,6 @@ FACEBOOK: https://www.facebook.com/themefisher
 									<li><a href="<%=request.getContextPath()%>/logout.do">로그아웃</a></li>
 								</c:if>
 							</ul></li>
-
 					</ul>
 					<!-- / .nav .navbar-nav .navbar-right -->
 
