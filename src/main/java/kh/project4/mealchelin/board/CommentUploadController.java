@@ -52,7 +52,7 @@ public class CommentUploadController {
 
 	
 	//ajaxfileupload
-	@RequestMapping(value = "/uploadAjax", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/uploadAjax", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public @ResponseBody ResponseEntity<List<JSONObject>> uploadAjax(@RequestParam("fileupload[]") List<MultipartFile> files) throws Exception {
 		String upFolder = "C:\\uploadfiles\\upload";
 		File upFolderPath = new File(upFolder);

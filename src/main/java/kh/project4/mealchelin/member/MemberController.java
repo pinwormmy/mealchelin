@@ -44,6 +44,7 @@ public class MemberController {
 		if (loginData.getMLevel() == -1) // 회원등급 -1 은 탈퇴한 계정
 			return alertMsgAndGoUrl(request, "탈퇴한 계정입니다. 다른 ID로 로그인해주세요~!!", "login.do");
 		getLoginSessionAndIdCookie(loginData, request, response);
+		log.debug("로그인 성공: {}", loginData);
 		return "redirect:/";
 	}
 
