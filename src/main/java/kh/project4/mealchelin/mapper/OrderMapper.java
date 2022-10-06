@@ -1,5 +1,6 @@
 package kh.project4.mealchelin.mapper;
 
+import kh.project4.mealchelin.member.PointDTO;
 import kh.project4.mealchelin.order.CartVO;
 import kh.project4.mealchelin.order.OrderCriteria;
 import kh.project4.mealchelin.order.OrderCriteriaUser;
@@ -46,4 +47,5 @@ public interface OrderMapper {
 
     public int countPage(OrderCriteria cri) throws Exception;
 
+    PointDTO loadCurrentPoint(String mId) throws Exception;
 }

@@ -1,5 +1,7 @@
 package kh.project4.mealchelin.order;
 
+import kh.project4.mealchelin.member.PointDTO;
+
 import java.util.List;
 
 public interface OrderService {
@@ -29,4 +31,5 @@ public interface OrderService {
 	public List<OrderVO> selectOrderList(OrderCriteria cri) throws Exception;
 	public int countPage(OrderCriteria cri) throws Exception;
 
+    PointDTO loadCurrentPoint(String mId) throws Exception;
 }

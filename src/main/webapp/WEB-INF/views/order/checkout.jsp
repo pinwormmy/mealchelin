@@ -60,12 +60,6 @@
                            <input type="text" class="form-control" name="oAddress_detail" id="user_address_detail" placeholder="">
                         </div>
                      </div>
-                     <!-- 국가까진 필요없을 듯합니다
-                     <div class="form-group">
-                        <label for="user_country">국가</label>
-                        <input type="text" class="form-control" id="user_country" placeholder="">
-                     </div>
-                      -->
                   </form>
                </div>
                <div class="block">
@@ -87,7 +81,7 @@
                                  <label for="card-cvc">CVC 번호 <span class="required">*</span></label>
                                  <input id="card-cvc" class="form-control"  type="tel" maxlength="4" placeholder="CVC" >
                               </div>
-                              <a href="<%=request.getContextPath()%>/addOrder.do?mId=${member.MId}" class="btn btn-main mt-20" onclick="checkoutForm();">주문하기</a >
+                              <a href="<%=request.getContextPath()%>/addOrder.do?mId=${member.MId}" class="btn btn-main mt-20" onclick="goCheckout();">주문하기</a >
                            </form>
                         </div>
                      </div>
@@ -116,13 +110,14 @@
                      
                      <c:set var="sumPrice" value="${sumPrice + cart.cquantity * cart.price}" />
                      
-                     </c:forEach>   
-                                      
-                     <!-- 포인트 아직 미구현. 다음 프로젝트때 도입예정
-                     <div class="discount-code">
-                        <p> 포인트가 있으신가요? <a data-toggle="modal" data-target="#coupon-modal" href="#!">enter it here</a></p>
+                     </c:forEach>
+                     <hr>
+                     <div class="point-menu">
+                        <span>보유포인트 : ${point.currentPoint}</span>
+                        <input id="usePoint" class="form-control" placeholder="사용할 포인트" >
+                        잔여포인트 :<span id="remainingPoint"></span>
                      </div>
-                      -->
+                     <hr>
                      <ul class="summary-prices">
                         <li>
                            <span>총가격:</span>
@@ -132,10 +127,14 @@
                            <span>배송비:</span>
                            <span>무료</span>
                         </li>
+                        <li>
+                           <span>포인트사용:</span>
+                           <span>- <span id="inputedUsePoint">0</span> 원</span>
+                        </li>
                      </ul>
                      <div class="summary-total">
                         <span>Total</span>
-                        <span><fmt:formatNumber value="${sumPrice}" pattern="###,####,###"/>원</span>
+                        <span><span id="finalPayment"></span>원</span>
                      </div>
                   </div>
                </div>
@@ -144,51 +143,72 @@
       </div>
    </div>
 </div>
-   <!-- Modal -->
-   <div class="modal fade" id="coupon-modal" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-         <div class="modal-content">
-            <div class="modal-body">
-               <form>
-                  <div class="form-group">
-                     <input class="form-control" type="text" placeholder="Enter Coupon Code">
-                  </div>
-                  <button type="submit" class="btn btn-main">Apply Coupon</button>
-               </form>
-            </div>
-         </div>
-      </div>
-   </div>
+<!-- Modal -->
+<div class="modal fade" id="coupon-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+     <div class="modal-content">
+        <div class="modal-body">
+           <form>
+              <div class="form-group">
+                 <input class="form-control" type="text" placeholder="Enter Coupon Code">
+              </div>
+              <button type="submit" class="btn btn-main">Apply Coupon</button>
+           </form>
+        </div>
+     </div>
+  </div>
+</div>
+
+<%@ include file="../include/footer.jspf" %>
    
- <script type="text/javascript">
+<script type="text/javascript">
+
+    alert("js test01");
  
- let checkoutForm = document.getElementById("checkoutSignUp");	
+    let checkoutForm = document.getElementById("checkoutSignUp");
+    let usePoint = document.getElementById("usePoint");
  
-   function checkoutForm() {
-		if (checkoutForm.user_address_detail.value == "") {
-			alert("상세주소를 입력하세요.");
-			checkoutForm.user_address_detail.focus();
-			return false;
-		}
-		if (checkoutForm.card-number.value == "") {
-			alert("카드 번호를 입력하세요.");
-			checkout-form.card-number.focus();
-			return false;
-		}
-		
-		if (checkoutForm.card-expiry.value == "") {
-			alert("카드 만료기한을 입력하세요.");
-			checkout-form.card-expiry.focus();
-			return false;
-		}
-		if (checkoutForm.card-cvc.value == "") {
-			alert("CVC번호를 입력하세요.");
-			checkout-form.card-cvc.focus();
-			return false;
-		}
-		
-		checkoutForm.submit();
-	}
-   </script>
-   
-   <%@ include file="../include/footer.jspf" %>
+    function goCheckout() {
+        if (checkoutForm.user_address_detail.value == "") {
+            alert("상세주소를 입력하세요.");
+            checkoutForm.user_address_detail.focus();
+            return false;
+        }
+        if (checkoutForm.card-number.value == "") {
+            alert("카드 번호를 입력하세요.");
+            checkout-form.card-number.focus();
+            return false;
+        }
+        if (checkoutForm.card-expiry.value == "") {
+            alert("카드 만료기한을 입력하세요.");
+            checkout-form.card-expiry.focus();
+            return false;
+        }
+        if (checkoutForm.card-cvc.value == "") {
+            alert("CVC번호를 입력하세요.");
+            checkout-form.card-cvc.focus();
+            return false;
+        }
+        checkoutForm.submit();
+    }
+
+    $('#usePoint').focusout(function() {
+        let usePoint = $(this).val();
+        let result = ${point.currentPoint} - usePoint;
+        if(result < 0) {
+            $(this).val(0);
+            alert("보유포인트 이내로 입력해주세요~");
+        }
+        $('#remainingPoint').html(result);
+        $('#inputedUsePoint').html(usePoint);
+        let finalResult = ${sumPrice} - usePoint
+        let finalResultWithComma = $.numberWithCommas(finalResult);
+        $('#finalPayment').html(finalResultWithComma);
+    });
+
+    $.numberWithCommas = function(price) {
+        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
+</script>
+
