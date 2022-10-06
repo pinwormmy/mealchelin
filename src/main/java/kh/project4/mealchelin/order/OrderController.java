@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import kh.project4.mealchelin.member.PointDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,13 @@ public class OrderController {
 	
 	/* 주문 */
 	@RequestMapping(value="/checkout.do")
-	public String checkout(String mId, HttpServletRequest request, HttpSession session) throws Exception {
+	public String checkout(HttpServletRequest request, Model model) throws Exception {
+		HttpSession session = request.getSession();
+		String mId = request.getParameter("mId");
 		List<CartVO> cartList = orderService.showCart(mId);
 		session.setAttribute("cartList", cartList);
+		logger.debug("아이디 값 확인 : {}", mId);
+		model.addAttribute("point", orderService.loadCurrentPoint(mId));
 		return "order/checkout";
 	}
 	

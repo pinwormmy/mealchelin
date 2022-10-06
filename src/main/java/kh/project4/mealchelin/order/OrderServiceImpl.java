@@ -3,6 +3,7 @@ package kh.project4.mealchelin.order;
 import java.util.List;
 
 import kh.project4.mealchelin.mapper.OrderMapper;
+import kh.project4.mealchelin.member.PointDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -100,6 +101,11 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public int countPage(OrderCriteria cri) throws Exception {
 		return orderMapper.countPage(cri);
+	}
+
+	@Override
+	public PointDTO loadCurrentPoint(String mId) throws Exception {
+		return orderMapper.loadCurrentPoint(mId);
 	}
 
 }
