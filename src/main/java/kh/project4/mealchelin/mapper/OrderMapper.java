@@ -5,6 +5,7 @@ import kh.project4.mealchelin.order.CartVO;
 import kh.project4.mealchelin.order.OrderCriteria;
 import kh.project4.mealchelin.order.OrderCriteriaUser;
 import kh.project4.mealchelin.order.OrderVO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -48,4 +49,6 @@ public interface OrderMapper {
     public int countPage(OrderCriteria cri) throws Exception;
 
     PointDTO loadCurrentPoint(String mId) throws Exception;
+
+    void usePoint(@Param("mId")String mId, @Param("usePoint")int usePoint) throws Exception;
 }

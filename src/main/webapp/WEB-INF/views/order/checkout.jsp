@@ -41,7 +41,7 @@
             <div class="col-md-8">
                <div class="block billing-details">
                   <h4 class="widget-title">배송지</h4>
-                  <form class="checkout-form" action="/order.do" method="post" id="checkoutSignUp">
+                  <form class="checkout-form" method="post" id="checkoutSignUp">
                      <div class="form-group">
                         <label for="full_name">이름</label>
                         <input type="text" class="form-control" id="full_name" value="${member.MName}" placeholder="">
@@ -81,7 +81,7 @@
                                  <label for="card-cvc">CVC 번호 <span class="required">*</span></label>
                                  <input id="card-cvc" class="form-control"  type="tel" maxlength="4" placeholder="CVC" >
                               </div>
-                              <a href="<%=request.getContextPath()%>/addOrder.do?mId=${member.MId}" class="btn btn-main mt-20" onclick="goCheckout();">주문하기</a >
+                              <a href="javascript:goCheckout();" class="btn btn-main mt-20">주문하기</a >
                            </form>
                         </div>
                      </div>
@@ -114,7 +114,7 @@
                      <hr>
                      <div class="point-menu">
                         <span>보유포인트 : ${point.currentPoint}</span>
-                        <input id="usePoint" class="form-control" placeholder="사용할 포인트" >
+                        <input id="usePoint" class="form-control" placeholder="사용할 포인트" value="0">
                         잔여포인트 :<span id="remainingPoint"></span>
                      </div>
                      <hr>
@@ -134,7 +134,7 @@
                      </ul>
                      <div class="summary-total">
                         <span>Total</span>
-                        <span><span id="finalPayment"></span>원</span>
+                        <span><span id="finalPayment"><fmt:formatNumber value="${sumPrice}" pattern="###,####,###"/></span>원</span>
                      </div>
                   </div>
                </div>
@@ -143,61 +143,51 @@
       </div>
    </div>
 </div>
-<!-- Modal -->
-<div class="modal fade" id="coupon-modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-     <div class="modal-content">
-        <div class="modal-body">
-           <form>
-              <div class="form-group">
-                 <input class="form-control" type="text" placeholder="Enter Coupon Code">
-              </div>
-              <button type="submit" class="btn btn-main">Apply Coupon</button>
-           </form>
-        </div>
-     </div>
-  </div>
-</div>
+
 
 <%@ include file="../include/footer.jspf" %>
    
 <script type="text/javascript">
 
-    alert("js test01");
+    alert("js test04");
  
     let checkoutForm = document.getElementById("checkoutSignUp");
+    let userAddressDetail = document.getElementById("user_address_detail");
+    let cardNumber = document.getElementById("card-number");
+    let cardExpiry = document.getElementById("card-expiry");
+    let cardCvc = document.getElementById("card-cvc");
     let usePoint = document.getElementById("usePoint");
  
     function goCheckout() {
-        if (checkoutForm.user_address_detail.value == "") {
+        if (userAddressDetail.value == "") {
             alert("상세주소를 입력하세요.");
             checkoutForm.user_address_detail.focus();
             return false;
         }
-        if (checkoutForm.card-number.value == "") {
+        if (cardNumber.value == "") {
             alert("카드 번호를 입력하세요.");
             checkout-form.card-number.focus();
             return false;
         }
-        if (checkoutForm.card-expiry.value == "") {
+        if (cardExpiry.value == "") {
             alert("카드 만료기한을 입력하세요.");
             checkout-form.card-expiry.focus();
             return false;
         }
-        if (checkoutForm.card-cvc.value == "") {
+        if (cardCvc.value == "") {
             alert("CVC번호를 입력하세요.");
             checkout-form.card-cvc.focus();
             return false;
         }
-        checkoutForm.submit();
+        location.href="/addOrder.do?mId=${member.MId}&usePoint=" + usePoint.value;
     }
 
     $('#usePoint').focusout(function() {
         let usePoint = $(this).val();
         let result = ${point.currentPoint} - usePoint;
         if(result < 0) {
-            $(this).val(0);
             alert("보유포인트 이내로 입력해주세요~");
+            $(this).val(0).focus();
         }
         $('#remainingPoint').html(result);
         $('#inputedUsePoint').html(usePoint);
@@ -206,7 +196,7 @@
         $('#finalPayment').html(finalResultWithComma);
     });
 
-    $.numberWithCommas = function(price) {
+    $.numberWithCommas = function(price) { // 가격 3자리당 쉼표 찍기 표현식
         return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
 
