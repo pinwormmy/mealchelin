@@ -108,4 +108,9 @@ public class OrderServiceImpl implements OrderService {
 		return orderMapper.loadCurrentPoint(mId);
 	}
 
+	@Override
+	public void usePoint(String mId, int usePoint) throws Exception {
+		orderMapper.usePoint(mId, usePoint);
+	}
+
 }

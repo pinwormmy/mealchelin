@@ -150,5 +150,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			WHERE MID=#{mId}
 	</select>
 
+	<update id="usePoint" parameterType="kh.project4.mealchelin.member.PointDTO">
+		UPDATE POINT
+			SET CURRENTPOINT=CURRENTPOINT-#{usePoint}, UPDATEDATE=SYSDATE
+			WHERE MID=#{mId}
+	</update>
+
 
 </mapper>

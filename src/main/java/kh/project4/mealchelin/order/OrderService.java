@@ -32,4 +32,6 @@ public interface OrderService {
 	public int countPage(OrderCriteria cri) throws Exception;
 
     PointDTO loadCurrentPoint(String mId) throws Exception;
+
+    void usePoint(String mId, int usePoint) throws Exception;
 }

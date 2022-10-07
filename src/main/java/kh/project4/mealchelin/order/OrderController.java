@@ -58,9 +58,10 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value = "/addOrder.do")
-	public String addOrder(String mId, HttpServletRequest request, HttpSession session) throws Exception {
+	public String addOrder(String mId, int usePoint, HttpServletRequest request, HttpSession session) throws Exception {
 		orderService.addOrder(mId);
 		orderService.resetCart(mId);
+		orderService.usePoint(mId, usePoint);
 		session.setAttribute("mId", mId);
 		request.setAttribute("msg", "주문목록에 상품이 추가됐습니다.");
 		request.setAttribute("url", "confirmation.do");
