@@ -73,7 +73,6 @@ public class OrderController {
 		return "order/confirmation";
 	}
 	
-	
 	/* 장바구니 */
 	@RequestMapping(value="/cart.do")
 	public String cart(String mId, HttpServletRequest request, HttpSession session) throws Exception {
