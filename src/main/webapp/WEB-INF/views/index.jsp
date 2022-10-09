@@ -7,7 +7,7 @@
 <div class="hero-slider">
 	<div class="slider-item th-fullpage hero-area"
 		style="background-image: url(<%=request.getContextPath()%>/images/slider/korean.jpg);">
-		<div class="container">
+		<div class="container" style="height: 300px;">
 			<div class="row">
 				<div class="col-lg-8 text-center">
 					<p data-duration-in=".3" data-animation-in="fadeInUp"
@@ -25,7 +25,7 @@
 	</div>
 	<div class="slider-item th-fullpage hero-area"
 		style="background-image: url(<%=request.getContextPath()%>/images/slider/western.jpg);">
-		<div class="container">
+		<div class="container" style="height: 300px;">
 			<div class="row">
 				<div class="col-lg-8 text-left">
 					<p data-duration-in=".3" data-animation-in="fadeInUp"
@@ -43,7 +43,7 @@
 	</div>
 	<div class="slider-item th-fullpage hero-area"
 		style="background-image: url(<%=request.getContextPath()%>/images/slider/chinese.jpg);">
-		<div class="container">
+		<div class="container" style="height: 300px;">
 			<div class="row">
 				<div class="col-lg-8 text-right">
 					<p data-duration-in=".3" data-animation-in="fadeInUp"
@@ -61,7 +61,7 @@
 	</div>
 </div>
 
-<section class="products section bg-gray">
+<section class="products section bg-gray" style="padding: 0;">
 	<div class="container" style="padding: 0;">
 		<div class="row">
 			<div class="title text-center">
