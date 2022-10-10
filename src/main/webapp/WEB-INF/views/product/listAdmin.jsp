@@ -8,6 +8,8 @@
 <%@page import="java.text.DecimalFormat"%>
 
 <%@ include file="../include/header.jspf"%>
+<%@ include file="../include/sidebar.jspf"%>
+
 <section class="products section bg-gray">
 	<div class="container">
 		<div class="row" style="margin: 10px; text-align: right;">

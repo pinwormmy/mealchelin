@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@ include file="../include/header.jspf"%>
+<%@ include file="../include/sidebar.jspf"%>
 
 <style>
 .search {
@@ -115,7 +116,8 @@
 											<li> <span>Password:</span><span id="memberPw"></span></li>
 											<li> <span>Phone:</span> <span id="memberPhone"></span> </li>
 											<li> <span>Email:</span> <span id="memberEmail"></span> </li>
-											<li> <span>Address:</span> <span id="memberAddress" style="width:50%;"></span> </li>
+											<li> <span>Address:</span>
+											<span id="memberAddress" style="width:50%;"></span> </li>
 											<li> <span>Since:</span> <span id="memberRegDate"></span> </li>
 											<li> <span>Level:</span> <span id="memberMlevel"></span> </li>
 											<li> <span>Point:</span> <span id="memberCurrentPoint"></span> </li>
@@ -124,9 +126,12 @@
 									</div>									
 								</div>
 								<br>								
-								<button type="button" class="btn btn-main text-center" onclick="modifyMemberByAdmin();">수정</button>														
-								<button type="button" class="btn btn-main text-center" onclick="closeMemberDetail();">닫기</button><br><br>
-								<button type="button" class="btn btn-main text-center" id="withdrawalButton" onclick="closeAccountByAdmin();">탈퇴</button>	
+								<button type="button" class="btn btn-main text-center"
+								onclick="modifyMemberByAdmin();">수정</button>
+								<button type="button" class="btn btn-main text-center"
+								onclick="closeMemberDetail();">닫기</button><br><br>
+								<button type="button" class="btn btn-main text-center"
+								id="withdrawalButton" onclick="closeAccountByAdmin();">탈퇴</button>
 							</div>
 						</div>
 					</div>

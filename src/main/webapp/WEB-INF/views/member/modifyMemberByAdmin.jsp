@@ -18,6 +18,7 @@
 <body id="body">
 
 <%@ include file="../include/header.jspf"%>
+<%@ include file="../include/sidebar.jspf"%>
 	
 <section class="page-header">
 	<div class="container">
@@ -46,30 +47,37 @@
 					<li><a href="adminBoard.do">Board</a></li>
 				</ul>
 				<div class="dashboard-wrapper user-dashboard">
-					
 					<div class="total-order mt-20">
 						<h4>Modify Member Information</h4>
-						<div class="table-responsive">	
-																				
+						<div class="table-responsive">
 							<div class="dashboard-wrapper dashboard-user-profile" id="showMemberDetail">
 								<form action="submitModifyMemberByAdmin.do" id="submitModifyMemberByAdmin" method="post">
 								<div class="media">								
 									<div class="media-body">
 										<ul class="user-profile-list">										
-											<li> <span>ID:</span> <input type="text" name="mId" id="mId" value="${selectMember.MId}" disabled> 	
+											<li> <span>ID:</span>
+											<input type="text" name="mId" id="mId" value="${selectMember.MId}" disabled>
 											<input type="hidden" name="mId" value="${selectMember.MId}"></li>	
-											<li> <span>Name:</span> <input type="text" name="mName" value="${selectMember.MName}"> </li>
-											<li> <span>Password:</span> <input type="password" name="pw" value="${selectMember.pw}"> </li>											
-											<li> <span>Phone:</span> <input type="text" name="phone" value="${selectMember.phone}"> </li>
-											<li> <span>Email:</span> <input type="email" name="email" id="email" value="${selectMember.email}"> </li>
+											<li> <span>Name:</span>
+											<input type="text" name="mName" value="${selectMember.MName}"> </li>
+											<li> <span>Password:</span>
+											<input type="password" name="pw" value="${selectMember.pw}"> </li>
+											<li> <span>Phone:</span>
+											<input type="text" name="phone" value="${selectMember.phone}"> </li>
+											<li> <span>Email:</span>
+											<input type="email" name="email" id="email"
+											alue="${selectMember.email}"></li>
 											<li> <span>Address:</span> 
-											<input type="text" name="address" size="100" value="${selectMember.address}"> </li>																							
+											<input type="text" name="address" size="100"
+											value="${selectMember.address}"></li>
 										</ul>										
 									</div>									
 								</div>
 								<br>
-								<button type="button" class="btn btn-main text-center" onclick="checkModifyForm();">수정 완료</button>								
-								<button type="button" class="btn btn-main text-center" onclick="location.href='<%=request.getContextPath()%>/adminPage.do'">취소</button>
+								<button type="button" class="btn btn-main text-center"
+								onclick="checkModifyForm();">수정 완료</button>
+								<button type="button" class="btn btn-main text-center"
+								onclick="location.href='<%=request.getContextPath()%>/adminPage.do'">취소</button>
 								</form>
 							</div>
 							<div class="dashboard-wrapper dashboard-user-profile" id="showMemberDetail">
@@ -79,17 +87,21 @@
 										<ul class="user-profile-list">	
 											<li>해당 계정의 포인트를 정정 지급합니다. 상황 확인 및 고객 안내 후 진행바랍니다.</li>
 											<li> <span>Point:</span> 
-											<input type="text" name="currentPoint" id="currentPoint" value="${selectMember.pointDTO.currentPoint}"> 
+											<input type="text" name="currentPoint" id="currentPoint"
+											value="${selectMember.pointDTO.currentPoint}">
 											<input type="hidden" name="mId" value="${selectMember.MId}"></li>	
 											<li> <span>Last Update:</span>
-											<fmt:formatDate value="${selectMember.pointDTO.updateDate}" pattern="yyyy-MM-dd"/>
+											<fmt:formatDate value="${selectMember.pointDTO.updateDate}"
+											pattern="yyyy-MM-dd"/>
 											</li>
 										</ul>										
 									</div>									
 								</div>
 								<br>
-								<button type="button" class="btn btn-main text-center" onclick="checkPointForm();">포인트 정정 지급</button>								
-								<button type="button" class="btn btn-main text-center" onclick="location.href='<%=request.getContextPath()%>/adminPage.do'">취소</button>
+								<button type="button" class="btn btn-main text-center"
+								onclick="checkPointForm();">포인트 정정 지급</button>
+								<button type="button" class="btn btn-main text-center"
+								onclick="location.href='<%=request.getContextPath()%>/adminPage.do'">취소</button>
 								</form>
 							</div>
 						</div>
@@ -144,14 +156,12 @@
 	});
 	
 	function checkModifyForm() {
-		
 		let isPassword = /\S{4,}/;
 		if (submitModifyForm.pw.value == "") {
 			alert("비밀번호를 입력하세요!!");
 			submitModifyForm.pw.focus();
 			return false;
 		}
-
 		if(!isPassword.test(submitModifyForm.pw.value)){
 			alert("비밀번호는 4자리 이상이어야 합니다;");
 			submitModifyForm.pw.focus();
@@ -172,7 +182,6 @@
 	}
 	
 	function checkPointForm(){
-		
 		if (submitPointForm.currentPoint.value == "") {
 			alert("포인트 입력 확인해주세요!!");
 			submitPointForm.currentPoint.focus();

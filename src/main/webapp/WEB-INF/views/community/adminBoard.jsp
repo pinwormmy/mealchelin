@@ -30,6 +30,7 @@
 
 <body id="body">
 <%@ include file="../include/header.jspf"%>
+<%@ include file="../include/sidebar.jspf"%>
 <section class="page-header">
     <div class="container">
         <div class="row">

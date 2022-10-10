@@ -62,6 +62,5 @@ Start Call To Action
     <script type="text/javascript" src="<%=request.getContextPath()%>/plugins/google-map/gmap.js"></script>
     <script src="<%=request.getContextPath()%>/js/script.js"></script>
 
-  </body>
-  </html>
+
 

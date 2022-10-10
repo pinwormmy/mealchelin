@@ -2,33 +2,37 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <head>
-<link rel="icon" type="image/png" href="http://example.com/myicon.png">
-<meta charset="utf-8">
-<title>밀슐랭 | 밀키트 쇼핑몰</title>
-
-<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
-	integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
-	crossorigin="anonymous"></script>
 
 <style>
-@charset "utf-8";
-/* outline/scroll/css/right_design03.css */
 
-/*스크롤배너(오른쪽) */
-#scroll_right{position:fixed; top:0px; right: 0px;padding:0px;background:#fff;border-left:1px solid #ccc;height:100%; width:300px;z-index:100;}
+#scroll_right {
+    position:fixed;
+    top:0px;
+    right: 0px;
+    padding:0px;
+    background:#fff;
+    border-left:1px solid #ccc;
+    height:100%;
+    width:300px;z-index:100;
+}
 #scroll_right .right_quick_top a,.right_quick_bottom a{cursor:pointer;}
 
-#scroll_right .scroll_right_overflow{position:fixed;height:100%;width:300px;padding:10px;box-sizing:border-box;overflow-y:scroll; -ms-overflow-style: none;overflow: auto;}
+#scroll_right .scroll_right_overflow {
+    position:relative;
+    top: 10%;
+    height:100%;
+    width:300px;padding:10px;
+    box-sizing:border-box;
+    overflow-y:scroll;
+    -ms-overflow-style: none;overflow: auto;
+}
 #scroll_right .scroll_right_overflow::-webkit-scrollbar { display: none; }
 
-#scroll_right .right_slideBanner{margin:0 0 10px 0;}
-#scroll_right .right_slideBanner img{max-width:100%;}
-#scroll_right .right_slideBanner .slick-dots{bottom:6px;}
-#scroll_right .right_slideBanner .slick-dots li{margin:0 3px;}
-
-#scroll_right .right_banner{margin:0 0 10px 0;text-align:center;}
+#scroll_right .right_banner {
+    margin:0 0 50px 0;
+    text-align:center;
+}
 #scroll_right .right_banner img{max-width:100%;}
-
 
 #scroll_right .right_link{padding:0px 0 5px;}
 #scroll_right .right_link ul{display:inline-block;width:100%;}
@@ -38,11 +42,6 @@
 #scroll_right .right_link ul li a i{display: inline-block;font-size:17px;color: #cdcdcd;border: 1px solid #dedede;border-radius: 50%;padding:9px 10px;}
 #scroll_right .right_link ul li a span{display:block;font-size:11.5px;margin:5px 0 0;color:#777;}
 
-#scroll_right .right_sns{padding:5px 0;}
-#scroll_right .right_sns ul{display:inline-block;width:100%;}
-#scroll_right .right_sns ul li{float:left;width:25%;box-sizing:border-box;}
-#scroll_right .right_sns ul li a{display:block;width:80%;margin:0 auto;font-size:13px;text-align:center;color:#555;background:#f5f5f5;border-radius:3px;padding:6px 0;}
-#scroll_right .right_sns ul li a:hover{color:#000;}
 
 #scroll_right .scroll_right_cont{width:100%;padding:15px 0;margin:10px 0;float:none;display:block;text-align:center;border-top:1px solid #e9e9e9;border-bottom:1px solid #e9e9e9;}
 #scroll_right .scroll_right_cont ul{display:inline-block;position:relative;}
@@ -60,255 +59,118 @@
 
 #scroll_right .right_link2{}
 #scroll_right .right_link2 ul{}
-#scroll_right .right_link2 li{display:inline-block;width:100%;padding:15px 15px;box-sizing:border-box;border:1px solid #e9e9e9;border-radius:5px;margin:0 0 10px;font-size:15px;text-align:center;letter-spacing:1.1px;}
+#scroll_right .right_link2 li {
+    display:inline-block;
+    width:100%;
+    padding:15px 15px;
+    box-sizing:border-box;
+    border:1px solid #e9e9e9;
+    border-radius:5px;
+    margin:0 0 15px;
+    font-size:15px;
+    text-align:center;
+    letter-spacing:1.1px;
+}
 #scroll_right .right_link2 li a{color:#555;}
 #scroll_right .right_link2 li a i{padding-right:5px;font-size:9px;}
 #scroll_right .right_link2 li:first-child{background:#ea7600;border:1px solid #ea7600;}
 #scroll_right .right_link2 li:first-child a{color:#fff;}
 #scroll_right .right_link2 li:hover{background:#f5f5f5;border:1px solid #eee;}
 #scroll_right .right_link2 li:hover a{color:#111;}
-
-
-
-/*# sourceMappingURL=style.css.map */
-
 </style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+	integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+	crossorigin="anonymous"></script>
 
 </head>
 
 <body>
-      <!-- 우측 스크롤 배너 -->
-      <div id="scroll_right">
 
-      <div class="scroll_right_overflow">
-      	<div class="right_slideBanner">
-      		<style type="text/css">
+<div id="scroll_right">
+<div class="scroll_right_overflow">
+<div class="right_banner">
+<a href="/" ><img src="<%=request.getContextPath()%>/images/slider/mealkitLogo.png" /></a>
+</div>
+<hr>
+<div class="right_link2">
+    <ul class="top-menu text-right list-inline">
+        <c:if test="${member == null}">
+            <li class="dropdown cart-nav dropdown-slide">
+                <a href="<%=request.getContextPath()%>/signUp.do">회원가입</a>
+            </li>
+            <li class="dropdown cart-nav dropdown-slide">
+                <a href="<%=request.getContextPath()%>/login.do">로그인</a>
+            </li>
+        </c:if>
+        <c:if test="${member.MLevel == 1}">
+            <!-- 일반회원 모드 -->
+            <li class="dropdown cart-nav dropdown-slide">
+                <a href="<%=request.getContextPath()%>/signUp.do"><i class="tf-ion-android-cart"></i>장바구니</a>
+            </li>
+            <li class="dropdown cart-nav dropdown-slide">
+                <a href="<%=request.getContextPath()%>/order.do?mId=${member.MId}">주문내역</a>
+            </li>
+            <li class="dropdown cart-nav dropdown-slide">
+                <a href="<%=request.getContextPath()%>/checkPwd.do">마이페이지</a>
+            </li>
+        </c:if>
+        <c:if test="${member.MLevel == 2}">
+            <!-- 관리자 모드 -->
+            <li class="dropdown cart-nav dropdown-slide">
+                <a href="#"></i>관리자 모드</a>
+            </li>
+            <li class="dropdown cart-nav dropdown-slide">
+                <a href="<%=request.getContextPath()%>/adminPage.do">관리자 페이지</a>
+            </li>
+            <li class="dropdown cart-nav dropdown-slide">
+                <a href="<%=request.getContextPath()%>/logout.do">로그아웃</a>
+            </li>
+        </c:if>
+        <hr>
+        <li class="dropdown cart-nav dropdown-slide">
+            <form action="<%=request.getContextPath()%>/product/search" role="form">
+                <input type="text" name="keyword" id="keyword" class="form-control" placeholder="요리 검색">
+            </form>
+        </li>
+        <li class="dropdown cart-nav dropdown-slide">
+            <a href="<%=request.getContextPath()%>/product/listType?typeCode=1">한식</a>
+        </li>
+        <li class="dropdown cart-nav dropdown-slide">
+            <a href="<%=request.getContextPath()%>/product/listType?typeCode=2">양식</a>
+        </li>
+        <li class="dropdown cart-nav dropdown-slide">
+            <a href="<%=request.getContextPath()%>/product/listType?typeCode=3">중식</a>
+        </li>
+        <hr>
+        <li class="dropdown cart-nav dropdown-slide">
+            <a href="#TOP">위쪽으로</a>
+        </li>
+    </ul>
+</div>
 
-          .slider-banner-759793874{
-          /*width:165px;*/
-      	width:100%;
-          /*height:165px;*/
-      	height:auto;
-          }
-          .slider-banner-759793874 img{
-              width:165px;
-             /* height:165px;*/height:auto;
-          }
+</div>
 
-
-          .slider-banner-759793874 .slick-prev{
-             background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E");
-             background:#ffffff\0/IE8;
-          }
-          .slider-banner-759793874 .slick-next{
-              background-image:   url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E");
-              background:#ffffff\0/IE8;
-          }
-
-          .slider-banner-759793874  .slick-dots li button{
-              width:8px;
-              height:8px;
-              border-radius:100%;
-              background:#aaaaaa;
-          }
-          .slider-banner-759793874 .slick-dots li.slick-active button{
-              background:#333333;
-          }
-      </style>
-
-      <div  class="slider-wrap slider-banner-759793874">
-          <div>
-           <img src="<%=request.getContextPath()%>/images/slider/mealkitLogo.png"  alt="본문 슬라이드 배너" title="본문 슬라이드 배너"   />
-          </div>
-          <div>
-           <img src="https://cdn-pro-web-134-253-godomall.spdycdn.net/mychef1_godomall_com/data/skin/front/udweb_pc_20200903/img/banner/slider_759793874/4efdd2f969559e8b1c92e99f32ded48e_65111.jpg"  alt="본문 슬라이드 배너" title="본문 슬라이드 배너"   />
-          </div>
-
-      </div >
-      <script src="/data/skin/front/udweb_pc_20200903/js/slider/slick/slick.js" type="text/javascript" charset="utf-8"></script>
-      <script type="text/javascript">
-          $(document).ready(function(){
-              $('.slider-banner-759793874').not('.slick-initialized').on('init', function(event, slick) {
-      			var slide_width = $('.slider-banner-759793874').width();
-      			$('.slider-banner-759793874 .slick-slide').width(slide_width);
-      			$( window ).resize( function(){
-      				var slide_width = $('.slider-banner-759793874').width();
-      				$('.slider-banner-759793874 .slick-slide').width(slide_width);
-      			});
-      		}).slick({
-                  autoplay: true,
-                  dots: true,
-                  arrows: false,
-                  infinite: true,
-                  autoplaySpeed :3000,
-                  speed:1300,
-                  slidesToShow: 1,
-                  draggable : true
-              });
-          });
-      </script>
-
-      	</div>
-      	<div class="right_banner">
-      <a href="#" ><img src="<%=request.getContextPath()%>/images/slider/mealkitLogo.png"  alt="스크롤 우측 배너" title="스크롤 우측 배너"   /></a>	</div>
-      	<div class="right_link2">
-      		<ul class="top-menu text-right list-inline">
-
-            						<c:if test="${member == null}">
-            							<!-- 로그인 정보가 없을 때 -->
-            							<li class="dropdown cart-nav dropdown-slide"><a
-            								href="<%=request.getContextPath()%>/notLoginCart.do"
-            								class="dropdown-toggle"><i class="tf-ion-android-cart"></i>장바구니</a>
-            							</li>
-            						</c:if>
-            						<c:if test="${member != null and member.MLevel == 1}">
-            							<!-- 일반회원 모드 -->
-            							<li class="dropdown cart-nav dropdown-slide"><a
-            								href="<%=request.getContextPath()%>/cart.do?mId=${member.MId}"
-            								class="dropdown-toggle"><i class="tf-ion-android-cart"></i>장바구니</a>
-            							</li>
-            						</c:if>
-            						<c:if test="${member != null and member.MLevel == 2}">
-            							<!-- 운영자 모드 -->
-            						</c:if>
-      			<!-- Order -->
-
-                						<c:if test="${member == null}">
-                							<!-- 로그인 정보가 없을 때 -->
-                							<li class="dropdown cart-nav dropdown-slide"><a
-                								href="<%=request.getContextPath()%>/notLoginCart.do"
-                								class="dropdown-toggle">주문내역</a></li>
-                						</c:if>
-
-                						<c:if test="${member != null and member.MLevel == 1}">
-                							<!-- Mlevel.1 -->
-                							<li class="dropdown cart-nav dropdown-slide"><a
-                								href="<%=request.getContextPath()%>/order.do?mId=${member.MId}"
-                								class="dropdown-toggle">주문내역</a></li>
-                						</c:if>
-
-                						<c:if test="${member != null and member.MLevel == 2}">
-                							<%-- <!-- Mlevel.2 -->
-                							<li class="dropdown cart-nav dropdown-slide"><a
-                								href="<%=request.getContextPath()%>/orderAdmin.do"
-                								class="dropdown-toggle">주문내역</a></li> --%>
-                						</c:if>
-
-                						<!-- /Order -->
-      		</ul>
-      	</div>
-
-      	<div class="scroll_right_cont">
-      		<h4>TODAY VIEW<br/><i class="xi-caret-down-min"></i></h4>
-      		<div class="scr_paging">
-      			<button type="button" class="bnt_scroll_prev" title="최근본 이전 상품"><img src="https://cdn-pro-web-134-253-godomall.spdycdn.net/mychef1_godomall_com/data/skin/front/udweb_pc_20200903/img/common/btn/btn_scroll_prev.png" alt="최근본 이전 상품"></button>
-      			<span><strong class="js_current">0</strong>/<span class="js_total" style="float:none;width:auto;">2</span></span>
-      			<button type="button" class="bnt_scroll_next" title="최근본 다음 상품"><img src="https://cdn-pro-web-134-253-godomall.spdycdn.net/mychef1_godomall_com/data/skin/front/udweb_pc_20200903/img/common/btn/btn_scroll_next.png" alt="최근본 다음 상품"></button>
-      		</div>
-      		<!-- //scr_paging -->
-      	</div>
-
-      	<span class="btn_scroll_top"><a href="#TOP"><img src="https://cdn-pro-web-134-253-godomall.spdycdn.net/mychef1_godomall_com/data/skin/front/udweb_pc_20200903/img/common/btn/btn_scroll_top.png" alt="상단으로 이동"/></a></span>
-      </div>
-
-      <script>
-
-      	/* 우측 스크롤 배너 TOP , BOTTOM */
-
-      	// top으로 이동
-          $('.right_quick_top a').click(
-              function() {
-                  $('html, body').stop().animate({scrollTop: $('body').offset().top}, 300);
-                  return false;
-              }
-          );
-      	// bottom으로 이동
-          $('.right_quick_bottom a').click(
-              function() {
-                  $('html, body').stop().animate({scrollTop: $('body').height()}, 300);
-                  return false;
-              }
-          );
-
-          // DOM 로드
-          $(function () {
-              $('.scroll_right_cont').todayGoods();
-          });
-
-          // 최근본상품 리스트 페이징 처리 플러그인
-          $.fn.todayGoods = function () {
-              // 기본값 세팅
-              var self = $(this);
-              var setting = {
-                  page: 1,
-                  total: 0,
-                  rowno: 5
-              };
-              var element = {
-                  goodsList: self.find('ul > li'),
-                  closeButton: self.find('ul > li > button'),
-                  prev: self.find('.scr_paging > .bnt_scroll_prev'),
-                  next: self.find('.scr_paging > .bnt_scroll_next'),
-                  paging: self.find('.scr_paging')
-              };
-
-              // 페이지 갯수 설정
-              setting.total = Math.ceil(element.goodsList.length / setting.rowno);
-
-              // 화면 초기화 및 갱신 (페이지 및 갯수 표기)
-              var init = function () {
-                  if (setting.total == 0) {
-                      setting.page = 0;
-                      element.paging.hide();
-                  }
-                  self.find('ul').hide().eq(setting.page - 1).show();
-                  self.find('.scr_paging .js_current').text(setting.page);
-                  self.find('.scr_paging .js_total').text(setting.total);
-              }
-
-              // 삭제버튼 클릭
-              element.closeButton.click(function(e){
-                  $.post('../goods/goods_ps.php', {
-                      'mode': 'delete_today_goods',
-                      'goodsNo': $(this).data('goods-no')
-                  }, function (data, status) {
-                      // 값이 없는 경우 성공
-                      if (status == 'success' && data == '') {
-                          location.reload(true);
-                      }
-                      else {
-                          console.log('request fail. ajax status (' + status + ')');
-                      }
-                  });
-              });
-
-              // 이전버튼 클릭
-              element.prev.click(function (e) {
-                  setting.page = 1 == setting.page ? setting.total : setting.page - 1;
-                  init();
-              });
-
-              // 다음버튼 클릭
-              element.next.click(function (e) {
-                  setting.page = setting.total == setting.page ? 1 : setting.page + 1;
-                  init();
-              });
-
-              // 화면 초기화
-              init();
-          };
-      </script>
-              </div>
-              <!-- //scroll_right -->
-              <!-- //우측 스크롤 배너 -->
-
-
-          </div>
-          <!-- //scroll_wrap -->
-
-
-          <!-- 퀵 검색 폼 -->
-          <!-- 퀵 검색 폼 -->
 
       </div>
+      <!-- //scroll_right -->
+      <!-- //우측 스크롤 배너 -->
+
+  </div>
+  <!-- //scroll_wrap -->
+
+</div>
+
+<script>
+
+    // top으로 이동
+    $('.right_quick_top a').click(
+        function() {
+          $('html, body').stop().animate({scrollTop: $('body').offset().top}, 300);
+          return false;
+        }
+    );
+
+</script>
+
 </body>

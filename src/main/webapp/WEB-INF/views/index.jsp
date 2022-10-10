@@ -1,6 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/png" href="http://example.com/myicon.png">
+<!-- Basic Page Needs
+  ================================================== -->
+<meta charset="utf-8">
+<title>밀슐랭 | 밀키트 쇼핑몰</title>
+</head>
+
+<body id="body">
+
 <%@ include file="./include/header.jspf"%>
 <%@ include file="./include/sidebar.jspf"%>
 
@@ -116,3 +128,6 @@
 </section>
 
 <%@ include file="./include/footer.jspf"%>
+
+</body>
+</html>

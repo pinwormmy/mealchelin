@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@ include file="../include/header.jspf"%>
+<%@ include file="../include/sidebar.jspf"%>
 <style type="text/css">
 .pagination {
 	list-style: none;
@@ -29,6 +30,7 @@
 }
 </style>
 <body id="body">
+
 	<!-- Main Menu Section -->
 	<section class="page-header">
 		<div class="container">

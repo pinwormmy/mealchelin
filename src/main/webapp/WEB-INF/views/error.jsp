@@ -8,6 +8,7 @@
 <body>
 
 <%@ include file="./include/header.jspf"%>
+<%@ include file="./include/sidebar.jspf"%>
 
 <h2>파일 경로 확인해보세요~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</h2><br>
 

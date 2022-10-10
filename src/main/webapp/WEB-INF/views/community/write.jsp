@@ -3,6 +3,7 @@
 
 <%@ include file="../include/header.jspf"%>
 
+
 <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
 	integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
 	crossorigin="anonymous"></script>
@@ -28,6 +29,8 @@
 
 
 <body id="body">
+
+    <%@ include file="../include/sidebar.jspf"%>
 
 	<section class="signin-page account">
 		<div class="container">
