@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@ include file="../include/header.jspf" %>
+<%@ include file="../include/sidebar.jspf"%>
 <style>
 .media-body {
 	line-height: 1em;

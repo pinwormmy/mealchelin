@@ -37,6 +37,7 @@
 </head>
 <body id="body">
 <%@ include file="../include/header.jspf"%>
+<%@ include file="../include/sidebar.jspf"%>
 	<section class="signin-page account">
 		<div class="container">
 			<div class="row">

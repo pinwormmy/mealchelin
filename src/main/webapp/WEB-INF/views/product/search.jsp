@@ -7,6 +7,7 @@
 <%@page import="java.text.DecimalFormat"%>
 
 <%@ include file="../include/header.jspf" %>
+<%@ include file="../include/sidebar.jspf"%>
 	
 <%String keyword = request.getParameter("keyword"); %>
 		    

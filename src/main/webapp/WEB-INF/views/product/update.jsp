@@ -23,6 +23,7 @@
 </head>
 <body id="body">
 <%@ include file="../include/header.jspf"%>
+<%@ include file="../include/sidebar.jspf"%>
 
 <c:if test="${not empty productOne}">
 	<section class="single-product">

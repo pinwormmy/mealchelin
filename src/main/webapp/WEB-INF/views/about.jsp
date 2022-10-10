@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="./include/header.jspf"%>
+<%@ include file="./include/sidebar.jspf"%>
 
 
 <section class="page-header">

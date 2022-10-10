@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ include file="../include/header.jspf"%>
+<%@ include file="../include/sidebar.jspf"%>
 
 <style>
 span {
@@ -12,8 +13,9 @@ span {
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
+
 	$(document).ready(function() {
-	
+
 		$('#key2').on("blur", function(event) {
 			if($(this).val() == $('#key1').val()){
 				$('#codeCkMsg').text('인증코드가 일치합니다.').css('color', 'green');
@@ -41,6 +43,7 @@ span {
 			}
 		});
 	});
+
 </script>
 
 <section class="forget-password-page account">

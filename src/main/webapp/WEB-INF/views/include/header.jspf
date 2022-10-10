@@ -17,7 +17,6 @@ TWITTER: https://twitter.com/themefisher
 FACEBOOK: https://www.facebook.com/themefisher
 -->
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +24,6 @@ FACEBOOK: https://www.facebook.com/themefisher
 <!-- Basic Page Needs
   ================================================== -->
 <meta charset="utf-8">
-<title>밀슐랭 | 밀키트 쇼핑몰</title>
 
 <!-- Mobile Specific Metas
   ================================================== -->
@@ -72,10 +70,10 @@ FACEBOOK: https://www.facebook.com/themefisher
 	<section class="top-header">
 		<div class="container" style="padding: 0;">
 			<div class="row">
-				<div class="col-md-4 col-xs-12 col-sm-4">
-<!-- 					<div class="contact-number">
-						<i class="tf-ion-ios-telephone"></i> <span>0129-12323-12312</span>
-					</div> -->
+				<div class="col-md-4 col-xs-12 col-sm-4" style="padding: 5px;">
+				    <div class="contact-number">
+						<i class="tf-ion-ios-telephone"></i> <span style="font-size: 16px;">02-1234-1234</span>
+					</div>
 				</div>
 				<div class="col-md-4 col-xs-12 col-sm-4">
 					<!-- Site Logo -->
@@ -298,9 +296,6 @@ FACEBOOK: https://www.facebook.com/themefisher
 												href="<%=request.getContextPath()%>/product/listType?typeCode=5">etc</a></li>
 
 										</ul></li>
-									<!-- / shop -->
-
-									
 									
 									<!-- Community -->
 									<li class="dropdown "><a

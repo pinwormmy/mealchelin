@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ include file="../include/header.jspf"%>
+<%@ include file="../include/sidebar.jspf"%>
 
 <style>
 .h {
@@ -28,18 +29,16 @@ span {
 	font-size: 11px;
 }
 </style>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
+
 	$(document).ready(function() {
-
 		$('#email').on("keyup", function(event) {
-
 			$('#checkedEmail').val('N');
 			$('#checkedCode').val('N');
-
 			const email = $('#email').val();
 			const regExp = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.[a-zA-Z]{2,4}$/;
-
 			if (!regExp.test(email)) {
 				$('#emailCkMsg').text(
 					'이메일 형식이 아닙니다.').css('color', 'red');
@@ -64,11 +63,8 @@ span {
 		});
 
 		$('#emailSendBtn').on("click",function(event) {
-
 			$('#email').attr('readonly', true);
-
 			const email = $('#email').val();
-
 			$.ajax({
 				url : '${pageContext.request.contextPath}/sendEmail.do?email='+ email,
 				type : 'get',
@@ -86,9 +82,7 @@ span {
 		});
 
 		$('#VerificationCode').on("keyup",function(event) {
-
 			const inputCode = $(this).val();
-
 			if (inputCode === code) {
 				$('#codeCkMsg').text('인증코드가 일치합니다.').css('color', 'green');
 				$('#checkedCode').val('Y');
@@ -166,7 +160,8 @@ span {
 							</div>
 							<div class="form-group">
 								<label>이메일</label> 
-								<input type="email" class="form-control" id="email" name="email" value="${member.email}">
+								<input type="email" class="form-control"
+								id="email" name="email" value="${member.email}">
 								<button type="button" class="gradient-btn" id="emailSendBtn"
 									disabled="disabled">확인</button>
 								<span id="emailCkMsg"></span>
