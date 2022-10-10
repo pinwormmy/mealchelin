@@ -6,8 +6,6 @@
 <%@ page import="java.sql.ResultSet"%>
 <%@ page import="java.sql.SQLException"%>
 <%@ page import="java.text.DecimalFormat"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.io.*"%>
 <html>
 <head>
@@ -26,11 +24,17 @@ input[type="file"] {
 	cursor: pointer;
 }
 </style>
+<script src="<%=request.getContextPath()%>/plugins/jquery/dist/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+	integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+	crossorigin="anonymous"></script>
+
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <!-- 동적으로 생성된 영역을 selector로 참조하기위하여 고유값(rno)를id에부여 -->
 <!-- https://stackoverflow.com/questions/34252817/handlebarsjs-check-if-a-string-is-equal-to-a-value -->
+
 </head>
 <body>
 <%@ include file="../include/header.jspf"%>
@@ -231,38 +235,9 @@ input[type="file"] {
 
 <%@ include file="../include/footer.jspf"%>
 
-<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-	integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-	crossorigin="anonymous"></script>
 
-<script id="template" type="text/x-handlebars-template">
 
-    {{#each .}}
-    <div id = targetdiv{{rno}} ">
-    <ui id="reviewreplyLi" class="replyLi" data-rno={{rno}}>
-     <div class="post-comments" >
-      <span class="time">
-        <i class="fa fa-clock-o"> 등록일 : {{prettifyDate regDate}}</i>
-      </span>
-      <h4 class="comment-author"> <a href="https://www.google.com/search?q={{mid}}"> 작성자 : {{mid}}</a></h4>
 
-    {{#ifEquals mid}}
-    <a id = "targetdelete{{rno}}" style="border:groove" class="pull-right" style="cursor:pointer;" onclick="deleteReview('{{rno}}')"><i
-            class="tf-ion-chatbubbles"></i>삭제</a>
-    <a style="border:groove" class="pull-right" style="cursor:pointer;" onclick="modifyReview('{{rno}}','{{mid}}')" ><i class="tf-ion-chatbubbles"></i>수정</a>
-    {{/ifEquals}}
-    <div class="timeline-body" id="reviewsContent{{rno}}">{{content}} </div>
-    <div>
-    </div>
-    <span id = "targetspan{{rno}}"><img src onerror="imgonerrorfunction('{{rno}}')" ></span>
-    </br>
-    <br>
-    </div>
-    </ui>
-    </div>
-    {{/each}}
-
-</script>
 
 <script>
 
@@ -481,12 +456,6 @@ input[type="file"] {
 	}
 
 	for(var i = 0; i < storeimg.length ; i ++){
-/* 				var uuid = function uuidv4() {
-			  return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-			    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-			  );
-			} */
-
 		console.log('foundfile' + i + '=' + storeimg[i].name);
 		formData.append("fileupload[]",storeimg[i]);
 		//vals.push(storeimg[i].name);
@@ -606,6 +575,35 @@ input[type="file"] {
         var date = dateObj.getDate();
         return year + "/" + month + "/" + date;
     });
+
+</script>
+
+<script id="template" type="text/x-handlebars-template">
+
+    {{#each .}}
+    <div id = targetdiv{{rno}} ">
+    <ui id="reviewreplyLi" class="replyLi" data-rno={{rno}}>
+     <div class="post-comments" >
+      <span class="time">
+        <i class="fa fa-clock-o"> 등록일 : {{prettifyDate regDate}}</i>
+      </span>
+      <h4 class="comment-author"> <a href="https://www.google.com/search?q={{mid}}"> 작성자 : {{mid}}</a></h4>
+
+    {{#ifEquals mid}}
+    <a id = "targetdelete{{rno}}" style="border:groove" class="pull-right" style="cursor:pointer;" onclick="deleteReview('{{rno}}')"><i
+            class="tf-ion-chatbubbles"></i>삭제</a>
+    <a style="border:groove" class="pull-right" style="cursor:pointer;" onclick="modifyReview('{{rno}}','{{mid}}')" ><i class="tf-ion-chatbubbles"></i>수정</a>
+    {{/ifEquals}}
+    <div class="timeline-body" id="reviewsContent{{rno}}">{{content}} </div>
+    <div>
+    </div>
+    <span id = "targetspan{{rno}}"><img src onerror="imgonerrorfunction('{{rno}}')" ></span>
+    </br>
+    <br>
+    </div>
+    </ui>
+    </div>
+    {{/each}}
 
 </script>
 

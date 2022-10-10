@@ -36,6 +36,9 @@ dependencies {
 	implementation group: 'org.imgscalr', name: 'imgscalr-lib', version: '4.2'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation 'javax.servlet:jstl'
+	// https://mvnrepository.com/artifact/org.codeartisans/org.json
+	implementation group: 'org.codeartisans', name: 'org.json', version: '20161124'
+
 }
 
 tasks.named('test') {
