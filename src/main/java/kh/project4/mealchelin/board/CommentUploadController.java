@@ -7,12 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import javax.annotation.Resource;
-
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.json.JSONObject;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -54,7 +51,7 @@ public class CommentUploadController {
 	//ajaxfileupload
 	@RequestMapping(value = "/uploadAjax", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public @ResponseBody ResponseEntity<List<JSONObject>> uploadAjax
-	(@RequestParam(value = "fileupload[]") List<MultipartFile> files) throws Exception {
+	(@RequestParam(value = "fileupload[]", required = false) List<MultipartFile> files) throws Exception {
 		String upFolder = "C:\\uploadfiles\\upload";
 		File upFolderPath = new File(upFolder);
 		if(upFolderPath.exists() == false) {

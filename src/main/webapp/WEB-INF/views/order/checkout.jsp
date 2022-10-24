@@ -150,7 +150,7 @@
    
 <script type="text/javascript">
 
-    alert("js test04");
+    //alert("js test04");
  
     let checkoutForm = document.getElementById("checkoutSignUp");
     let userAddressDetail = document.getElementById("user_address_detail");
