@@ -9,6 +9,11 @@
   ================================================== -->
 <meta charset="utf-8">
 <title>밀슐랭 | 밀키트 쇼핑몰</title>
+<style>
+.slider-item {
+    margin: 0 300px 0 200px;
+}
+</style>
 </head>
 
 <body id="body">

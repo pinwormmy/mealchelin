@@ -46,6 +46,8 @@ input[type="file"] {
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+
+
 <c:if test="${not empty productOne}">
 	<section class="single-product">
 		<div class="container">
@@ -134,6 +136,18 @@ input[type="file"] {
 	}
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<script>
+    Handlebars.registerHelper("prettifyDate", function(timeValue) {
+        var dateObj = new Date(timeValue);
+        var year = dateObj.getFullYear();
+        var month = dateObj.getMonth() + 1;
+        var date = dateObj.getDate();
+        return year + "/" + month + "/" + date;
+    });
+    //date type변환
+</script>
+
 <script>
 var pid = ${productOne.PId};
 var replyPage = 1;
@@ -142,7 +156,7 @@ var replyPage = 1;
 			console.log(formObj);
 			var template = Handlebars.compile($("#templateAttach").html());
 
-			$.get("/mealkit/reviews/all/"+pid,function(){
+			$.get("/reviews/all/"+pid,function(){
 			});
 
 			function loadComment (){
@@ -201,45 +215,6 @@ var replyPage = 1;
 									</ul>
 								</div>
 
-
-<script id="template" type="text/x-handlebars-template">
-
-{{#each .}}
-<div id = targetdiv{{rno}} ">
-<ui id="reviewreplyLi" class="replyLi" data-rno={{rno}}>
- <div class="post-comments" >
-  <span class="time">
-    <i class="fa fa-clock-o"> 등록일 : {{prettifyDate regDate}}</i>
-  </span>
-  <h4 class="comment-author"> <a href="https://www.google.com/search?q={{mid}}"> 작성자 : {{mid}}</a></h4>
-
-
-{{#ifEquals mid}}
-<a id = "targetdelete{{rno}}" style="border:groove" class="pull-right" style="cursor:pointer;" onclick="deleteReview('{{rno}}')"><i
-		class="tf-ion-chatbubbles"></i>삭제</a>
-<a style="border:groove" class="pull-right" style="cursor:pointer;" onclick="modifyReview('{{rno}}','{{mid}}')" ><i class="tf-ion-chatbubbles"></i>수정</a>
-{{/ifEquals}}
-<div class="timeline-body" id="reviewsContent{{rno}}">{{content}} </div>
-<div>
-</div>
-
-<span id = "targetspan{{rno}}">
-<img src onerror="imgonerrorfunction('{{rno}}')" >
-</span>
-
-</br>
-
-
-<br>
-
-</div>
-</ui>
-
-</div>
-
-{{/each}}
-
-</script>
 
 <script>
 function getPage(pageInfo) {
@@ -351,13 +326,13 @@ function imgonerrorfunction(rno){
 		var fileLink;
 
 		    //staticvalue
-			imgsrc = "/mealkit/displayFile?fileName="+fullName;
+			imgsrc = "/displayFile?fileName="+fullName;
 			fileLink = fullName.substr(14);
 
 			var front = fullName.substr(0,12); // /2015/07/01/
 			var end = fullName.substr(14);
 
-			getLink = "/mealkit/displayFile?fileName="+front + end;
+			getLink = "/displayFile?fileName="+front + end;
 
 		fileName = fileLink.substr(fileLink.indexOf("_")+1);
 		return  {fileName:fileName, imgsrc:imgsrc, getLink:getLink, fullName:fullName};
@@ -485,12 +460,9 @@ $(".pagination").on("click", "li a", function(event) {
 		type: 'POST',
 		success: function(result){
 			console.log(result);
-
 			for(var i = 0 ; i < result.length ; i ++){
-
 				vals.push(result[i].filename);
 				console.log(result[i].filename);
-
 			}
 
 			document.getElementById("fileupload").value = "";
@@ -658,19 +630,38 @@ Handlebars.registerHelper('ifEquals',function(arg1,options){
 		</div>
 	</div>
 </section>
-
 <%@ include file="../include/footer.jspf"%>
 </body>
 </html>
-<script>
-				Handlebars.registerHelper("prettifyDate", function(timeValue) {
-					var dateObj = new Date(timeValue);
-					var year = dateObj.getFullYear();
-					var month = dateObj.getMonth() + 1;
-					var date = dateObj.getDate();
-					return year + "/" + month + "/" + date;
-				});
-				//date type변환
+
+<script id="template" type="text/x-handlebars-template">
+
+{{#each .}}
+<div id = targetdiv{{rno}} ">
+<ui id="reviewreplyLi" class="replyLi" data-rno={{rno}}>
+ <div class="post-comments" >
+  <span class="time">
+    <i class="fa fa-clock-o"> 등록일 : {{prettifyDate regDate}}</i>
+  </span>
+  <h4 class="comment-author"> <a href="https://www.google.com/search?q={{mid}}"> 작성자 : {{mid}}</a></h4>
+{{#ifEquals mid}}
+<a id = "targetdelete{{rno}}" style="border:groove" class="pull-right" style="cursor:pointer;" onclick="deleteReview('{{rno}}')"><i
+		class="tf-ion-chatbubbles"></i>삭제</a>
+<a style="border:groove" class="pull-right" style="cursor:pointer;" onclick="modifyReview('{{rno}}','{{mid}}')" ><i class="tf-ion-chatbubbles"></i>수정</a>
+{{/ifEquals}}
+<div class="timeline-body" id="reviewsContent{{rno}}">{{content}} </div>
+<div>
+</div>
+<span id = "targetspan{{rno}}">
+<img src onerror="imgonerrorfunction('{{rno}}')" >
+</span>
+</br>
+<br>
+</div>
+</ui>
+</div>
+{{/each}}
 </script>
+
 
 

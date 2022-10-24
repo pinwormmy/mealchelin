@@ -1064,11 +1064,11 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 }
 
 .heroSliderArrow.prevArrow {
-  left: 20px;
+  left: 220px;
 }
 
 .heroSliderArrow.nextArrow {
-  right: 20px;
+  right: 320px;
 }
 
 @media (max-width: 768px) {

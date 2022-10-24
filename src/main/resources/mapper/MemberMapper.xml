@@ -12,7 +12,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 
 	<resultMap type="kh.project4.mealchelin.member.MemberDTO" id="member">
-		<result column="mNo" property="mNo" />
 		<result column="mId" property="mId" />
 		<result column="pw" property="pw" />
 		<result column="mName" property="mName" />
@@ -31,26 +30,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<insert id="submitSignUp">
-		insert into member(mNo, mId, pw, mName, phone, address, email, regDate)
-			values(mNo_seq.nextval, #{mId}, #{pw}, #{mName}, #{phone}, #{address}, #{email}, sysdate)			
+		insert into member(mId, pw, mName, phone, address, email, regDate)
+			values(#{mId}, #{pw}, #{mName}, #{phone}, #{address}, #{email}, now())
 	</insert>
 
 	<select id="checkUniqueId" resultType="int">
-		select count(*) from member where mId=#{mId}
+		select count(*)
+			from member
+			where mId=#{mId}
 	</select>
 
 	<select id="checkUniqueEmail" resultType="int">
-		select count(*) from member where email=#{email}
+		select count(*)
+			from member
+			where email=#{email}
 	</select>
 	
 	<select id="checkUniqueEmailForModify" resultType="int">
-		select count(*) from member where email=#{email} 
+		select count(*)
+			from member
+			where email=#{email}
 			and mId != #{mId}
 	</select>
 	
 	<insert id="earnPointForNewMember">
 		insert into point
-			values(#{mId}, #{currentPoint}, sysdate)			
+			values(#{mId}, #{currentPoint}, now())
 	</insert>
 	
 	<select id="showPoint" resultType="kh.project4.mealchelin.member.PointDTO">
@@ -59,9 +64,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="showMemberDetail" resultMap="member">
-		select a.mno, a.mid, a.pw, a.mName, a.phone, a.address, a.email, a.regDate, a.mLevel, b.currentPoint, b.updateDate 
-	    	from member a, point b
-	        where a.mid=b.mid 
+		select a.mid, a.pw, a.mName, a.phone, a.address, a.email, a.regDate, a.mLevel, b.currentPoint, b.updateDate
+	    	FROM member a
+			INNER JOIN point b
+	        ON a.mid=b.mid
 	        and a.mid=#{mId}	       
 	</select>	
 		
@@ -73,7 +79,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="modifyPoint">
 		update point
-		    set currentPoint=#{point}, updateDate=sysdate
+		    set currentPoint=#{point}, updateDate=now()
 		    where mid=#{mId}
 	</update>
 	
@@ -84,63 +90,62 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<select id="selectMember" resultType="kh.project4.mealchelin.member.MemberDTO">
-		select * from member where mId=#{mId}
+		select *
+			from member
+			where mId=#{mId}
 	</select>
 
 	<select id="checkPwd" resultType="int">
-		select count(*) from member
-		where mId=#{mId} and pw=#{pw}
+		select count(*)
+			from member
+			where mId=#{mId}
+			and pw=#{pw}
 	</select>
 	
 	<select id="checkEmail" resultType="int">
-		select count(*) from member where email=#{email}
+		select count(*)
+			from member
+			where email=#{email}
 	</select>
 
 	<update id="updateMyInfo">
 		update member 
 			set mName=#{mName}, email=#{email}, phone=#{phone}, address=#{address}
-		where mId=#{mId}
+			where mId=#{mId}
 	</update>
 
 	<update id="updatePwd">
-		update member set pw=#{pw} where mId=#{mId}
+		update member
+			set pw=#{pw}
+			where mId=#{mId}
 	</update>
 
 	<update id="deleteMember">
-		update member set mLevel=-1 where mId=#{mId}
+		update member
+			set mLevel=-1
+			where mId=#{mId}
 	</update>
 
 	<sql id="search">
-	  <if test="searchType != null" >
-		<if test="searchType == 'i'.toString()">
-		where mId like '%'||#{keyword}||'%'
+		<if test="searchType != null" >
+			<if test="searchType == 'i'.toString()">where mId like CONCAT('%', #{keyword}, '%')	</if>
+			<if test="searchType == 'n'.toString()">where mName like CONCAT('%', #{keyword}, '%')</if>
 		</if>
-	    <if test="searchType == 'n'.toString()">
-		where mName like '%'||#{keyword}||'%'
-		</if>
-	  </if>
 	</sql>
 
 	<select id="selectMemberList" resultType="kh.project4.mealchelin.member.MemberListDTO">
-	<![CDATA[
-		select * from(
- 			select rownum rn, mNo, mId, mName, mLevel, regDate, currentPoint from(
- 				select m.mNo, m.mId, m.mName, m.mLevel, m.regDate, p.currentPoint
-		    	from member m, point p where m.mId = p.mId
-            	order by mId asc
- 				)
- 	]]>
-		<include refid="search"></include>
-	<![CDATA[
- 			)
- 		where rn between #{pageStart} and #{pageEnd}
-	]]>
+		select m.mId, m.mName, m.mLevel, m.regDate, p.currentPoint
+			from member m
+			INNER JOIN point p
+			ON m.mId = p.mId
+			<include refid="search"></include>
+			order by mId asc
+			LIMIT #{pageStart}, 10;
 	</select>
 
 	<select id="countPage" resultType="int">
-	<![CDATA[
-		select count(*) from member
-	]]>
-		<include refid="search"></include>
+		select count(*)
+			from member
+			<include refid="search"></include>
 	</select>
 </mapper>

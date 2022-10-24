@@ -6,54 +6,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="kh.project4.mealchelin.mapper.CommunityMapper">
 
 	<select id="list" resultType="kh.project4.mealchelin.board.CommunityVO">
-		select cNo,
-		mId,
-		title,
-		content,
-		regDate
-		from (
-		select cNo,
-		mId,
-		title,
-		content,
-		regDate,
-		row_number() over(order by cNo desc) as rNum
-		from community
-		where 1=1
-
-		<include refid="search" />
-
-		) mp
-		where rNum between #{rowStart} and #{rowEnd}
-		order by cNo desc
-
+		select cNo, mId, title, content, regDate
+			from community
+			where 1=1 <include refid="search" />
+			order by cNo desc
+			limit #{rowStart}, 12;
 	</select>
 
 	<select id="listCount" resultType="int">
 		SELECT COUNT(cNo)
-		FROM community
-		WHERE 1=1
-		<include refid="search" />
-
-		And cNo > 0
+			FROM community
+			WHERE 1=1
+			<include refid="search" />
+			And cNo > 0
 	</select>
 
 	<select id="read" resultType="kh.project4.mealchelin.board.CommunityVO">
-		select
-		cNo, mId, title, content
-		from
-		community
-		where cNo = #{cNo}
+		select cNo, mId, title, content
+			from community
+			where cNo = #{cNo}
 	</select>
 
 	<update id="update">
-		update community set title =#{title}, content
-		=#{content}, regDate = sysdate
-		where cNo = #{cNo}
+		update community
+			set title =#{title}, content=#{content}, regDate = now()
+			where cNo = #{cNo}
 	</update>
 
 	<delete id="delete">
-		delete from community where cNo = #{cNo}
+		delete from community
+			where cNo = #{cNo}
 	</delete>
 <!-- 
 	<insert id="write">
@@ -86,13 +68,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORG_FILE_NAME,
 		STORED_FILE_NAME,
 		FILE_SIZE
-		)VALUES(
-		SEQ_COMMUNITY_FILE_NO.NEXTVAL,
-		#{CNO},
-		#{ORG_FILE_NAME},
-		#{STORED_FILE_NAME},
-		#{FILE_SIZE}
 		)
+			VALUES(
+			SEQ_COMMUNITY_FILE_NO.NEXTVAL,
+			#{CNO},
+			#{ORG_FILE_NAME},
+			#{STORED_FILE_NAME},
+			#{FILE_SIZE}
+			)
 	</insert>
 
 	<!-- 첨부파일 조회 -->
@@ -117,52 +100,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<update id="updateFile" parameterType="hashMap">
-    	UPDATE COMMUNITY_FILE SET
-    	DEL_GB = 'Y'
-    	WHERE FILE_NO = #{FILE_NO}
+    	UPDATE COMMUNITY_FILE
+			SET	DEL_GB = 'Y'
+			WHERE FILE_NO = #{FILE_NO}
     </update>
 	
 	<select id="adminList" resultType="kh.project4.mealchelin.board.CommunityVO">
-
-		select cNo,
-		mId,
-		title,
-		content,
-		regDate
-		from (
-		select cNo,
-		mId,
-		title,
-		content,
-		regDate,
-		row_number() over(order by cNo desc) as rNum
-		from community
-		where 1=1
-
-		<include refid="search" />
-
-		) mp
-		where rNum between #{rowStart} and #{rowEnd}
-		order by cNo desc
-
+		select cNo, mId, title, content, regDate
+			from community
+			where 1=1 <include refid="search" />
+			order by cNo desc
+			limit #{rowStart}, 12;
 	</select>
 	
 	<select id="adminListCount" resultType="int">
 		SELECT COUNT(cNo)
-		FROM community
-		WHERE 1=1
-		<include refid="search" />
-
-		And cNo > 0
+			FROM community
+			WHERE 1=1 <include refid="search" />
+			And cNo > 0
 	</select>
 	
 	<sql id="search">
 		<if test="searchType != null">
-			<if test="searchType == 't'.toString()">AND title LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'c'.toString()">AND content LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'w'.toString()">AND mId LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'tc'.toString()">AND (title LIKE '%' || #{keyword} || '%') or (content
-				LIKE '%' || #{keyword} || '%')</if>
+			<if test="searchType == 't'.toString()">AND title LIKE CONCAT('%', #{keyword}, '%')</if>
+			<if test="searchType == 'c'.toString()">AND content LIKE CONCAT('%', #{keyword}, '%')</if>
+			<if test="searchType == 'w'.toString()">AND mId LIKE CONCAT('%', #{keyword}, '%')</if>
+			<if test="searchType == 'tc'.toString()">AND (title LIKE CONCAT('%', #{keyword}, '%')
+					or (content	LIKE CONCAT('%', #{keyword}, '%'))</if>
 		</if>
 	</sql>
 

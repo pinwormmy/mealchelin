@@ -106,7 +106,7 @@
         <c:if test="${member.MLevel == 1}">
             <!-- 일반회원 모드 -->
             <li class="dropdown cart-nav dropdown-slide">
-                <a href="<%=request.getContextPath()%>/signUp.do"><i class="tf-ion-android-cart"></i>장바구니</a>
+                <a href="<%=request.getContextPath()%>/cart.do?mId=${member.MId}"><i class="tf-ion-android-cart"></i>장바구니</a>
             </li>
             <li class="dropdown cart-nav dropdown-slide">
                 <a href="<%=request.getContextPath()%>/order.do?mId=${member.MId}">주문내역</a>
