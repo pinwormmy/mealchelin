@@ -6,146 +6,146 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="kh.project4.mealchelin.mapper.MemberMapper">
 
 	<resultMap type="kh.project4.mealchelin.member.PointDTO" id="point">
-		<result column="mId" property="mId" />
-		<result column="currentPoint" property="currentPoint" />				
-		<result column="updateDate" property="updateDate" />				
+		<result column="MID" property="mId" />
+		<result column="CURRENTPOINT" property="currentPoint" />
+		<result column="UPDATEDATE" property="updateDate" />
 	</resultMap>
 
 	<resultMap type="kh.project4.mealchelin.member.MemberDTO" id="member">
-		<result column="mId" property="mId" />
-		<result column="pw" property="pw" />
-		<result column="mName" property="mName" />
-		<result column="phone" property="phone" />
-		<result column="address" property="address" />
-		<result column="email" property="email" />
-		<result column="regDate" property="regDate" />
-		<result column="mLevel" property="mLevel" />
-		<collection property="pointDTO" resultMap="point" />
+		<result column="MID" property="mId" />
+		<result column="PW" property="pw" />
+		<result column="MNAME" property="mname" />
+		<result column="PHONE" property="phone" />
+		<result column="ADDRESS" property="address" />
+		<result column="EMAIL" property="email" />
+		<result column="REGDATE" property="regDate" />
+		<result column="MLEVEL" property="mLevel" />
+		<collection property="PointDTO" resultMap="point" />
 	</resultMap>	
 	
 	<select id="submitLogin" resultType="kh.project4.mealchelin.member.MemberDTO">
 		select *
-			from member 
-			where mId=#{mId} and pw=#{pw}
+			from MEMBER
+			where MID=#{mId} and PW=#{pw}
 	</select>
 
 	<insert id="submitSignUp">
-		insert into member(mId, pw, mName, phone, address, email, regDate)
-			values(#{mId}, #{pw}, #{mName}, #{phone}, #{address}, #{email}, now())
+		insert into MEMBER(MID, PW, MNAME, PHONE, ADDRESS, EMAIL, REGDATE)
+			values(#{mId}, #{pw}, #{mNmae}, #{phone}, #{address}, #{email}, now())
 	</insert>
 
 	<select id="checkUniqueId" resultType="int">
 		select count(*)
-			from member
-			where mId=#{mId}
+			from MEMBER
+			where MID=#{mId}
 	</select>
 
 	<select id="checkUniqueEmail" resultType="int">
 		select count(*)
-			from member
-			where email=#{email}
+			from MEMBER
+			where EMAIL=#{email}
 	</select>
 	
 	<select id="checkUniqueEmailForModify" resultType="int">
 		select count(*)
-			from member
-			where email=#{email}
-			and mId != #{mId}
+			from MEMBER
+			where EMAIL=#{email}
+			and MID != #{mId}
 	</select>
 	
 	<insert id="earnPointForNewMember">
-		insert into point
+		insert into POINT
 			values(#{mId}, #{currentPoint}, now())
 	</insert>
 	
 	<select id="showPoint" resultType="kh.project4.mealchelin.member.PointDTO">
-		select * from point 
-			where mId=#{mId}
+		select * from POINT
+			where MID=#{mId}
 	</select>
 	
 	<select id="showMemberDetail" resultMap="member">
-		select a.mid, a.pw, a.mName, a.phone, a.address, a.email, a.regDate, a.mLevel, b.currentPoint, b.updateDate
-	    	FROM member a
-			INNER JOIN point b
+		select a.mid, a.PW, a.MNAME, a.PHONE, a.ADDRESS, a.EMAIL, a.REGDATE, a.MLEVEL, b.CURRENTPOINT, b.UPDATEDATE
+	    	FROM MEMBER a
+			INNER JOIN POINT b
 	        ON a.mid=b.mid
-	        and a.mid=#{mId}	       
+	        and a.mid=#{mId}
 	</select>	
 		
 	<update id="submitModifyMemberByAdmin">
 		update MEMBER
-		    set pw=#{pw}, mName=#{mName}, phone=#{phone}, address=#{address}, email=#{email}
+		    set PW=#{pw}, MNAME=#{mName}, PHONE=#{phone}, ADDRESS=#{address}, EMAIL=#{email}
 		    where mid=#{mId}
 	</update>
 	
 	<update id="modifyPoint">
-		update point
-		    set currentPoint=#{point}, updateDate=now()
+		update POINT
+		    set CURRENTPOINT=#{point}, UPDATEDATE=now()
 		    where mid=#{mId}
 	</update>
 	
 	<update id="closeAccount">
-		update member
-		    set mLevel=-1
-		    where mId=#{mId}
+		update MEMBER
+		    set MLEVEL=-1
+		    where MID=#{mId}
 	</update>
 	
 	<select id="selectMember" resultType="kh.project4.mealchelin.member.MemberDTO">
 		select *
-			from member
-			where mId=#{mId}
+			from MEMBER
+			where MID=#{mId}
 	</select>
 
 	<select id="checkPwd" resultType="int">
 		select count(*)
-			from member
-			where mId=#{mId}
-			and pw=#{pw}
+			from MEMBER
+			where MID=#{mId}
+			and PW=#{pw}
 	</select>
 	
 	<select id="checkEmail" resultType="int">
 		select count(*)
-			from member
-			where email=#{email}
+			from MEMBER
+			where EMAIL=#{email}
 	</select>
 
 	<update id="updateMyInfo">
-		update member 
-			set mName=#{mName}, email=#{email}, phone=#{phone}, address=#{address}
-			where mId=#{mId}
+		update MEMBER
+			set MNAME=#{mName}, EMAIL=#{email}, PHONE=#{phone}, ADDRESS=#{address}
+			where MID=#{mId}
 	</update>
 
 	<update id="updatePwd">
-		update member
-			set pw=#{pw}
-			where mId=#{mId}
+		update MEMBER
+			set PW=#{pw}
+			where MID=#{mId}
 	</update>
 
 	<update id="deleteMember">
-		update member
-			set mLevel=-1
-			where mId=#{mId}
+		update MEMBER
+			set MLEVEL=-1
+			where MID=#{mId}
 	</update>
 
 	<sql id="search">
 		<if test="searchType != null" >
-			<if test="searchType == 'i'.toString()">where mId like CONCAT('%', #{keyword}, '%')	</if>
-			<if test="searchType == 'n'.toString()">where mName like CONCAT('%', #{keyword}, '%')</if>
+			<if test="searchType == 'i'.toString()">where MID like CONCAT('%', #{keyword}, '%')	</if>
+			<if test="searchType == 'n'.toString()">where MNAME like CONCAT('%', #{keyword}, '%')</if>
 		</if>
 	</sql>
 
 	<select id="selectMemberList" resultType="kh.project4.mealchelin.member.MemberListDTO">
-		select m.mId, m.mName, m.mLevel, m.regDate, p.currentPoint
-			from member m
-			INNER JOIN point p
-			ON m.mId = p.mId
+		select m.MID, m.MNAME, m.MLEVEL, m.REGDATE, p.CURRENTPOINT
+			from MEMBER m
+			INNER JOIN POINT p
+			ON m.MID = p.MID
 			<include refid="search"></include>
-			order by mId asc
+			order by MID asc
 			LIMIT #{pageStart}, 10;
 	</select>
 
 	<select id="countPage" resultType="int">
 		select count(*)
-			from member
+			from MEMBER
 			<include refid="search"></include>
 	</select>
 </mapper>

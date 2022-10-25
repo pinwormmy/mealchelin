@@ -24,7 +24,7 @@
 		<div class="col-md-4">
 			<div class="product-item">
 				<div class="product-thumb">
-					<img class="img-responsive" src="<%=request.getContextPath()%>/product/display?fileName=${product.thumbnail}"
+					<img class="img-responsive" src="<%=request.getContextPath()%>/${product.thumbnail}"
 						alt="product-img" />
 					<div class="preview-meta">
 						<ul>

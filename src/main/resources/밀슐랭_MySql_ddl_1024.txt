@@ -1,213 +1,210 @@
  /* 상품 */
 CREATE TABLE PRODUCT (
-	pId INT PRIMARY KEY AUTO_INCREMENT, /* 상품번호 */
-	typeCode VARCHAR(20) NOT NULL, /* 분류코드 */
-	pName VARCHAR(100) NOT NULL, /* 상품명 */
-	price INT NOT NULL, /* 단가 */
-	brand VARCHAR(100) NOT NULL, /* 브랜드 */
-	description VARCHAR(300), /* 상세설명 */
-	thumbnail VARCHAR(300), /* 썸네일 */
-	image VARCHAR(300) /* 이미지 */
+	PID INT PRIMARY KEY AUTO_INCREMENT, /* 상품번호 */
+	TYPECODE VARCHAR(20) NOT NULL, /* 분류코드 */
+	PNAME VARCHAR(100) NOT NULL, /* 상품명 */
+	PRICE INT NOT NULL, /* 단가 */
+	BRAND VARCHAR(100) NOT NULL, /* 브랜드 */
+	DESCRIPTION VARCHAR(300), /* 상세설명 */
+	THUMBNAIL VARCHAR(300), /* 썸네일 */
+	IMAGE VARCHAR(300) /* 이미지 */
 );
 
 /* 상품 분류 */
 CREATE TABLE PRODUCTTYPE (
-	typeCode VARCHAR(20) PRIMARY KEY, /* 분류코드 */
-	tName VARCHAR(30) NOT NULL, /* 분류명 */
-	tNameEng VARCHAR(30) NOT NULL /* 분류명영문 */
+	TYPECODE VARCHAR(20) PRIMARY KEY, /* 분류코드 */
+	TNAME VARCHAR(30) NOT NULL, /* 분류명 */
+	TNAMEENG VARCHAR(30) NOT NULL /* 분류명영문 */
 );
 
 /* 포인트 */
 CREATE TABLE POINT (
-	mId VARCHAR(30) PRIMARY KEY, /* ID */
-	currentPOINT INT DEFAULT 0 NOT NULL, /* 포인트 */
-	updateDate DATETIME NOT NULL /* 변동일 */
+	MID VARCHAR(30) PRIMARY KEY, /* ID */
+	CURRENTPOINT INT DEFAULT 0 NOT NULL, /* 포인트 */
+	UPDATEDATE DATETIME NOT NULL /* 변동일 */
 );
 
 /* 회원관리 */
 CREATE TABLE MEMBER (
-	mId VARCHAR(30) PRIMARY KEY, /* ID */
-	pw VARCHAR(50) NOT NULL, /* 비밀번호 */
-	mName VARCHAR(20) NOT NULL, /* 이름 */
-	phone VARCHAR(20), /* 전화번호 */
-	address VARCHAR(200), /* 주소 */
-	email VARCHAR(100) UNIQUE, /* 이메일 */
-	regDate DATETIME DEFAULT current_timestamp, /* 가입일 */
-	mLevel INT DEFAULT 1 /* 회원등급 */
+	MID VARCHAR(30) PRIMARY KEY, /* ID */
+	PW VARCHAR(50) NOT NULL, /* 비밀번호 */
+	MNAME VARCHAR(20) NOT NULL, /* 이름 */
+	PHONE VARCHAR(20), /* 전화번호 */
+	ADDRESS VARCHAR(200), /* 주소 */
+	EMAIL VARCHAR(100) UNIQUE, /* 이메일 */
+	REGDATE DATETIME DEFAULT current_timestamp, /* 가입일 */
+	MLEVEL INT DEFAULT 1 /* 회원등급 */
 );
 
 /* 리뷰게시판 */
 CREATE TABLE REVIEW (
-	rNo INT PRIMARY KEY AUTO_INCREMENT, /* 리뷰번호 */
-	mId VARCHAR(30) NOT NULL, /* ID */
-	pId INT NOT NULL, /* 상품번호 */
-	content VARCHAR(1000) NOT NULL, /* 리뷰 내용 */
-	regDate DATETIME DEFAULT current_timestamp /* 리뷰 작성일 */
+	RNO INT PRIMARY KEY AUTO_INCREMENT, /* 리뷰번호 */
+	MID VARCHAR(30) NOT NULL, /* ID */
+	PID INT NOT NULL, /* 상품번호 */
+	CONTENT VARCHAR(1000) NOT NULL, /* 리뷰 내용 */
+	REGDATE DATETIME DEFAULT current_timestamp /* 리뷰 작성일 */
 );
 
 /* 리뷰게시판 댓글 */
 CREATE TABLE REVIEWCOMMENT (
-	rcNo INT PRIMARY KEY AUTO_INCREMENT, /* 리뷰댓글번호 */
-	rNo INT NOT NULL, /* 리뷰번호 */
-	mId VARCHAR(30) NOT NULL, /* ID */
-	pId INT, /* 상품번호 */
-	regDate DATETIME DEFAULT current_timestamp, /* 댓글 작성일 */
-	content VARCHAR(1000) NOT NULL /* 댓글 내용 */
+	RCNO INT PRIMARY KEY AUTO_INCREMENT, /* 리뷰댓글번호 */
+	RNO INT NOT NULL, /* 리뷰번호 */
+	MID VARCHAR(30) NOT NULL, /* ID */
+	PID INT, /* 상품번호 */
+	REGDATE DATETIME DEFAULT current_timestamp, /* 댓글 작성일 */
+	CONTENT VARCHAR(1000) NOT NULL /* 댓글 내용 */
 );
 
 /* 자유/커뮤니티 게시판 */
 CREATE TABLE COMMUNITY (
-	cNo INT PRIMARY KEY AUTO_INCREMENT, /* 번호 */
-	mId VARCHAR(30) NOT NULL, /* ID */
-	mLevel INT, /* 회원등급 */
-	title VARCHAR(100) NOT NULL, /* 제목 */
-	content VARCHAR(1000) NOT NULL, /* 내용 */
-	regDate DATETIME DEFAULT current_timestamp /* 작성일 */
+	CNO INT PRIMARY KEY AUTO_INCREMENT, /* 번호 */
+	MID VARCHAR(30) NOT NULL, /* ID */
+	MLEVEL INT, /* 회원등급 */
+	TITLE VARCHAR(100) NOT NULL, /* 제목 */
+	CONTENT VARCHAR(1000) NOT NULL, /* 내용 */
+	REGDATE DATETIME DEFAULT current_timestamp /* 작성일 */
 );
 
 /* 회원 장바구니 */
 CREATE TABLE USERCART (
-	ucId INT PRIMARY KEY AUTO_INCREMENT, /* 장바구니번호 */
-	mId VARCHAR(30) NOT NULL, /* ID */
-	pId INT NOT NULL, /* 상품번호 */
-	cquantity INT /* 상품수량 */
+	UCID INT PRIMARY KEY AUTO_INCREMENT, /* 장바구니번호 */
+	MID VARCHAR(30) NOT NULL, /* ID */
+	PID INT NOT NULL, /* 상품번호 */
+	CQUANTITY INT /* 상품수량 */
 );
 
 /* 회원 주문 */
 CREATE TABLE USERORDER (
-	oId INT PRIMARY KEY AUTO_INCREMENT, /* 주문번호 */
-	mId VARCHAR(30) NOT NULL, /* ID */
-	pId INT NOT NULL, /* 상품번호 */
-	quantity INT NOT NULL, /* 상품수량 */
-	oDate DATE, /* 주문날짜 */
-	price INT, /* 가격 */
-	statusCode VARCHAR(20) NOT NULL /* 상태코드 */
+	OID INT PRIMARY KEY AUTO_INCREMENT, /* 주문번호 */
+	MID VARCHAR(30) NOT NULL, /* ID */
+	PID INT NOT NULL, /* 상품번호 */
+	QUANTITY INT NOT NULL, /* 상품수량 */
+	ODATE DATE, /* 주문날짜 */
+	PRICE INT, /* 가격 */
+	STATUSCODE VARCHAR(20) NOT NULL /* 상태코드 */
 );
 
 /* 주문상태 */
 CREATE TABLE STATUSTYPE (
-	statusCode VARCHAR(20) PRIMARY KEY, /* 상태코드 */
-	statusName VARCHAR(50) NOT NULL /* 상태명 */
+	STATUSCODE VARCHAR(20) PRIMARY KEY, /* 상태코드 */
+	STATUSNAME VARCHAR(50) NOT NULL /* 상태명 */
 );
 
 /* 리뷰게시판 첨부 */
 CREATE TABLE FILENAME_TBL (
-	rNo INT PRIMARY KEY, /* 리뷰번호 */
-	savedfilename VARCHAR(1000) /* 새 컬럼 */
+	RNO INT PRIMARY KEY, /* 리뷰번호 */
+	SAVEDFILENAME VARCHAR(1000) /* 새 컬럼 */
 );
 
 ALTER TABLE PRODUCT
 	ADD FOREIGN KEY (
-			typeCode
+			TYPECODE
 		)
-		REFERENCES PRODUCTtype (
-			typeCode
+		REFERENCES PRODUCTTYPE (
+			TYPECODE
 		);
 
 ALTER TABLE POINT
 	ADD
 		FOREIGN KEY (
-			mId
+			MID
 		)
-		REFERENCES Member (
-			mId
+		REFERENCES MEMBER (
+			MID
 		)
 		ON DELETE CASCADE;
 
 ALTER TABLE REVIEW
 	ADD
-
 		FOREIGN KEY (
-			pId
+			PID
 		)
 		REFERENCES PRODUCT (
-			pId
+			PID
 		);
 
 ALTER TABLE REVIEW
 	ADD
-
 		FOREIGN KEY (
-			mId
+			MID
 		)
-		REFERENCES Member (
-			mId
+		REFERENCES MEMBER (
+			MID
 		);
 
-ALTER TABLE REVIEWcomment
+ALTER TABLE REVIEWCOMMENT
 	ADD
-
 		FOREIGN KEY (
-			rNo
+			RNO
 		)
 		REFERENCES REVIEW (
-			rNo
+			RNO
 		);
 
-ALTER TABLE REVIEWcomment
+ALTER TABLE REVIEWCOMMENT
 	ADD
 
 		FOREIGN KEY (
-			mId
+			MID
 		)
-		REFERENCES Member (
-			mId
+		REFERENCES MEMBER (
+			MID
 		);
 
-ALTER TABLE Community
+ALTER TABLE COMMUNITY
 	ADD FOREIGN KEY (
-			mId
+			MID
 		)
-		REFERENCES Member (
-			mId
+		REFERENCES MEMBER (
+			MID
 		);
 
 ALTER TABLE USERCART
 	ADD	FOREIGN KEY (
-			mId
+			MID
 		)
-		REFERENCES Member (
-			mId
+		REFERENCES MEMBER (
+			MID
 		);
 
 ALTER TABLE USERCART
 	ADD	FOREIGN KEY (
-			pId
+			PID
 		)
 		REFERENCES PRODUCT (
-			pId
+			PID
 		);
 
 ALTER TABLE USERORDER
 	ADD	FOREIGN KEY (
-			mId
+			MID
 		)
-		REFERENCES Member (
-			mId
+		REFERENCES MEMBER (
+			MID
 		);
 
 ALTER TABLE USERORDER
 	ADD	FOREIGN KEY (
-			pId
+			PID
 		)
 		REFERENCES PRODUCT (
-			pId
+			PID
 		);
 
 ALTER TABLE USERORDER
 	ADD	FOREIGN KEY (
-			statusCode
+			STATUSCODE
 		)
-		REFERENCES StatusType (
-			statusCode
+		REFERENCES STATUSTYPE (
+			STATUSCODE
 		);
 
 ALTER TABLE FILENAME_TBL
 	ADD	FOREIGN KEY (
-			rNo
+			RNO
 		)
 		REFERENCES REVIEW (
-			rNo
+			RNO
 		);
 
 /* 샘플 데이터 */
@@ -227,14 +224,14 @@ INSERT INTO POINT
     VALUES('admin', 999999999, now());
 
 -- STATUSTYPE
-INSERT INTO StatusType Values ('1','주문 확인');
-INSERT INTO StatusType Values ('2','상품 준비 중');
-INSERT INTO StatusType Values ('3','배송 준비 중');
-INSERT INTO StatusType Values ('4','배송 중');
-INSERT INTO StatusType Values ('5','배송 완료');
-INSERT INTO StatusType Values ('6','주문 취소');
-INSERT INTO StatusType Values ('7','반품 처리');
-INSERT INTO StatusType Values ('8','교환 처리');
+INSERT INTO STATUSTYPE Values ('1','주문 확인');
+INSERT INTO STATUSTYPE Values ('2','상품 준비 중');
+INSERT INTO STATUSTYPE Values ('3','배송 준비 중');
+INSERT INTO STATUSTYPE Values ('4','배송 중');
+INSERT INTO STATUSTYPE Values ('5','배송 완료');
+INSERT INTO STATUSTYPE Values ('6','주문 취소');
+INSERT INTO STATUSTYPE Values ('7','반품 처리');
+INSERT INTO STATUSTYPE Values ('8','교환 처리');
 
 -- COMMUNITY_FILE
 CREATE TABLE COMMUNITY_FILE(
