@@ -35,6 +35,7 @@ public class MemberController {
 		return "member/login";
 	}
 	
+	// 로그인 오류 확인하기
 	@RequestMapping(value = "/submitLogin.do", method = RequestMethod.POST)
 	public String submitLogin(MemberDTO member, HttpServletRequest request,
 							  HttpServletResponse response) throws Exception {
