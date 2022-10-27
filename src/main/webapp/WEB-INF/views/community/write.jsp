@@ -64,7 +64,6 @@
 								<tr>
 									<td>
 										<button type="submit" class="btn btn-main text-center">작성하기</button>
-										<button id="fileAdd_btn" class ="btn btn-main text-center" type="button">파일첨부</button>
 									</td>
 								</tr>
 							</tbody>

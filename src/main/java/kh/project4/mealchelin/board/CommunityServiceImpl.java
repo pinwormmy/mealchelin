@@ -21,11 +21,13 @@ public class CommunityServiceImpl implements CommunityService {
 	@Override
 	public void write(CommunityVO community, MultipartHttpServletRequest communityRequest) throws Exception {
 		communityMapper.write(community);
+		/* 파일첨부 기능 보류
 		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(community, communityRequest);
 		int size = list.size();
 		for (int i = 0; i < size; i++) {
 			communityMapper.insertFile(list.get(i));
 		}
+		*/
 	}
 
 	@Override
