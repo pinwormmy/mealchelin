@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Component("fileUtils")
 public class FileUtils {
-	private static final String filePath = "C:\\Community\\file\\"; // 파일이 저장될 위치
+	private static final String filePath = "./upload/"; // 파일이 저장될 위치
 	
 	public List<Map<String, Object>> parseInsertFileInfo(CommunityVO communityVO,
 														 MultipartHttpServletRequest mpRequest) throws Exception{

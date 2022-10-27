@@ -90,7 +90,7 @@
 <div id="scroll_right">
 <div class="scroll_right_overflow">
 <div class="right_banner">
-<a href="/" ><img src="<%=request.getContextPath()%>/images/slider/mealkitLogo.png" /></a>
+<a href="/" ><img src="<%=request.getContextPath()%>/images/slider/mealkitLogo.jpg" /></a>
 </div>
 <hr>
 <div class="right_link2">

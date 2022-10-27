@@ -31,7 +31,7 @@
 						data-delay-in=".1">한식 KOREAN FOOD</p>
 					<h1 data-duration-in=".3" data-animation-in="fadeInUp"
 						data-delay-in=".5">
-						우리 입맛에 맞는 정겨운 맛
+						우리 입에 맞는 정겨운 맛
 					</h1>
 					<a data-duration-in=".3" data-animation-in="fadeInUp"
 						data-delay-in=".8" class="btn"
@@ -92,7 +92,7 @@
 					<div class="product-item">
 						<div class="product-thumb">
 							<img class="img-responsive"
-								src="<%=request.getContextPath()%>/product/display?fileName=${productList.thumbnail}"
+								src="/${productList.thumbnail}"
 								alt="product-img" />
 							<div class="preview-meta">
 								<ul>

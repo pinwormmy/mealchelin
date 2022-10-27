@@ -70,9 +70,7 @@ input[type="file"] {
 								<!-- me art lab slider -->
 								<div class='carousel-inner '>
 									<div class='item active'>
-										<img
-											src='<%=request.getContextPath()%>/product/display?fileName=${productOne.thumbnail}'
-											alt='' />
+										<img src="/${productOne.thumbnail}" alt='' />
 									</div>
 								</div>
 							</div>
@@ -180,7 +178,7 @@ var replyPage = 1;
 						<div class="tab-content patternbg">
 							<div id="details" class="tab-pane fade active in">
 								<img
-									src='<%=request.getContextPath()%>/product/display?fileName=${productOne.image}'
+									src='/${productOne.image}'
 									class="img-responsive">
 							</div>
 
@@ -605,7 +603,7 @@ Handlebars.registerHelper('ifEquals',function(arg1,options){
 					<div class="product-item">
 						<div class="product-thumb">
 							<img class="img-responsive"
-								src="<%=request.getContextPath()%>/product/display?fileName=${relatedList.thumbnail}"
+								src="/${relatedList.thumbnail}"
 								alt="product-img" />
 							<div class="preview-meta">
 								<ul>

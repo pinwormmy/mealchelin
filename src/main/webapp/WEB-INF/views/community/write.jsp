@@ -46,6 +46,7 @@
 								<tr>
 									<div class="form-group"><input type="text" name='mId' class="form-control"
 										placeholder="작성자" value="${member.MId}" readonly="readonly">
+										<input type="hidden" name="mLevel" value="${member.MLevel}">
 									</div>
 								</tr>
 								<tr>

@@ -5,71 +5,71 @@
 <mapper namespace="kh.project4.mealchelin.mapper.CommentMapper">
 
 	<resultMap type="kh.project4.mealchelin.board.CommentVO" id="commentvo">
-		<result column="rno" property="rno" />
-		<result column="pid" property="pid"	/>	
-		<result column="mId" property="mId" />
-		<result column="content" property="content" />
-		<result column="regdate" property="regdate" />
-		<result column="updateddate" property="updateddate" />
+		<result column="RNO" property="rNo" />
+		<result column="PID" property="pId"	/>
+		<result column="MID" property="mId" />
+		<result column="CONTENT" property="content" />
+		<result column="REGDATE" property="regDate" />
+		<result column="UPDATEDATE" property="updateDate" />
 	</resultMap>
 
 	<!-- id 속성은 DAO 의 메소드와 같아야 한다. 여기의 boardVO 는 mybatis-confg.xml 에 Alias 되어 
 		있습니다. -->
 	<select id="list" resultType="CommentVO">
-		select * from review
-			where pid =	#{pid}
-			order by rno desc
+		select * from REVIEW
+			where PID =	#{pId}
+			order by RNO desc
 	</select>
 
 	<select id="create">
-		insert into review (pid, mId, content, regdate)
-			values(#{pid},#{mId},#{content},now())
+		insert into REVIEW (PID, MID, CONTENT, REGDATE)
+			values(#{pId},#{mId},#{content},now())
 	</select>
 	<update id="update">
-		update review set content = #{content},	regdate = now()
-			where rno = #{rno}
+		update REVIEW set CONTENT = #{content},	REGDATE = now()
+			where RNO = #{rNo}
 	</update>
 
 	<delete id="delete">
-		delete from review where rno =#{rno}
+		delete from REVIEW where RNO =#{rNo}
 	</delete>
 
 	<select id="listPage" resultType="CommentVO">
-		select * from review
-			where pid=1
-			order by rno desc
-			limit ((#{cri.page} -1) * #{cri.perPageNum}) + 1), 12
+		select * from REVIEW
+			where PID=1
+			order by RNO desc
+			limit 0, 12
 	</select>
 
 	<select id="count" resultType="int">
-		select count(pid) from review
-			where pid =#{pid}
+		select count(PID) from REVIEW
+			where PID =#{pId}
 	</select>
 
 	<select id="getPid" resultType="int">
-		select pid from review
-			where rno= #{rno}
+		select PID from REVIEW
+			where RNO= #{rNo}
 	</select>
 	
 	<insert id="addAttach">
-		insert into filename_tbl(savedFileName)
+		insert into FILENAME_TBL(savedFileName)
 			values(#{savedFileName})
 	</insert>
 	
 	<select id="getAttach" resultType="string">
 		select savedFileName
-			from filename_tbl
-			where rno = #{rno}
+			from FILENAME_TBL
+			where RNO = #{rNo}
 	</select>
 	
 	<delete id="deleteAttach">
-		delete from filename_tbl
-			where rno = #{rno}
+		delete from FILENAME_TBL
+			where RNO = #{rNo}
 	</delete>
 	
 	<insert id="replaceAttach">
-		insert into filename_tbl(savedFileName,rno)
-			values (#{savedFileName},#{rno})
+		insert into FILENAME_TBL(savedFileName,RNO)
+			values (#{savedFileName},#{rNo})
 	</insert>
 	
 </mapper>

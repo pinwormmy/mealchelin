@@ -6,13 +6,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="kh.project4.mealchelin.mapper.ProductMapper">
 
 	<select id="selectProductList" resultType="ProductVO">
-		select * from product
+		select * from PRODUCT
 			order by pId desc
 	</select>
 
 	<select id="selectProductDetail" resultType="ProductDetailVO">
 		select * from
-			product NATURAL JOIN productType
+			PRODUCT NATURAL JOIN PRODUCTTYPE
 			where pId=#{pId}
 	</select>
 
@@ -30,12 +30,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="selectByTypeCode" resultType="ProductVO">
-		select * from product
+		select * from PRODUCT
 			where typeCode=#{typeCode}
 	</select>
 	
 	<select id="selectTypeByTypeCode" resultType="ProductTypeVO">
-		select * from producttype
+		select * from PRODUCTTYPE
 			where typeCode=#{typeCode}
 	</select>
 
@@ -45,28 +45,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 
 	<update id="updateProduct">
-		update product
+		update PRODUCT
 			set	typeCode=#{typeCode}, pName=#{pName}, price=#{price}, brand=#{brand}, description=#{description}
 			where pId=#{pId}
 	</update>
 
 	<delete id="delete">
-		DELETE FROM product
+		DELETE FROM PRODUCT
 			WHERE pId = #{pId}
 	</delete>
 
 	<select id="selectListWithPaging" resultType="ProductVO">
 		SELECT * FROM PRODUCT
-			LIMIT ((#{page}-1) * #{perPageNum}), 10
+			LIMIT #{page}, 10
 	</select>
 
 	<select id="countPaging" resultType="int">
 		select count(pId)
-			from product
+			from PRODUCT
 	</select>
 
 	<select id="search" parameterType="String" resultType="ProductVO">
-		select * from product
+		select * from PRODUCT
 			where pName like CONCAT('%', #{keyword}, '%')
 			order by pId desc
 	</select>
@@ -104,14 +104,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="adminListSearch" resultType="ProductVO">
 		SELECT * FROM PRODUCT
 			WHERE 1=1 <include refid="searchSql" />
-			LIMIT ((#{page}-1) * #{perPageNum}), 10
+			LIMIT 0, 10
 	</select>
 
 
 	<select id="adminListSearchCount" resultType="int">
 		<![CDATA[
 		select count(pId)
-			from product
+			from PRODUCT
 			where pId > 0
 		]]>
 			<include refid="searchSql" />
