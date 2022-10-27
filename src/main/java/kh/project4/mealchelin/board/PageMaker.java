@@ -3,9 +3,11 @@ package kh.project4.mealchelin.board;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+@Slf4j
 public class PageMaker {
 
 	private int totalCount;
@@ -62,6 +64,7 @@ public class PageMaker {
 		}
 		prev = startPage == 1 ? false : true;
 		next = endPage * cri.getPerPageNum() >= totalCount ? false : true;
+		log.debug("현재페이지세팅 확인 : {}", getCri().toString());
 	}
 
 	public String makeQuery(int page) {

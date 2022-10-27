@@ -65,8 +65,9 @@
 											<tr>
 												<td>${CommunityVO.CNo}</td>
 												<td>${CommunityVO.MId}</td>
-												<td><a
-													href='<%=request.getContextPath()%>/community/read?cNo=${CommunityVO.CNo}'>${CommunityVO.title}</a></td>
+												<td>
+												<a href='<%=request.getContextPath()%>/community/read?cNo=${CommunityVO.CNo}'>
+												${CommunityVO.title}</a></td>
 												<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
 														value="${CommunityVO.regDate}" /></td>
 											</tr>

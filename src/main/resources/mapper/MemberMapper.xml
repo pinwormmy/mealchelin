@@ -31,7 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="submitSignUp">
 		insert into MEMBER(MID, PW, MNAME, PHONE, ADDRESS, EMAIL, REGDATE)
-			values(#{mId}, #{pw}, #{mNmae}, #{phone}, #{address}, #{email}, now())
+			values(#{mId}, #{pw}, #{mName}, #{phone}, #{address}, #{email}, now())
 	</insert>
 
 	<select id="checkUniqueId" resultType="int">
