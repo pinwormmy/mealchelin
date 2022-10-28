@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'kh.project4'
-version = '0.0.31-SNAPSHOT'
+version = '0.0.34-SNAPSHOT'
 sourceCompatibility = '11'
 
 configurations {
