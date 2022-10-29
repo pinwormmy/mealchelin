@@ -34,6 +34,7 @@
 		delete from REVIEW where RNO =#{rNo}
 	</delete>
 
+	<!-- 임시로 페이지값 떼우듯이 설정한거 제대로 복구하기 -->
 	<select id="listPage" resultType="CommentVO">
 		select * from REVIEW
 			where PID=1
