@@ -48,6 +48,7 @@ public class CommentUploadController {
 	}
 
 	
+	// 500에러 뜨는 거 문제파악하기
 	//ajaxfileupload
 	@RequestMapping(value = "/uploadAjax", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public @ResponseBody ResponseEntity<List<JSONObject>> uploadAjax

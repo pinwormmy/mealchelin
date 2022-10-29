@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			from COMMUNITY
 			where 1=1 <include refid="search" />
 			order by cNo desc
-			limit #{rowStart}, 12;
+			limit #{rowStart}, 10;
 	</select>
 
 	<select id="listCount" resultType="int">
@@ -92,7 +92,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			from COMMUNITY
 			where 1=1 <include refid="search" />
 			order by cNo desc
-			limit #{rowStart}, 12;
+			limit #{rowStart}, 10;
 	</select>
 	
 	<select id="adminListCount" resultType="int">
