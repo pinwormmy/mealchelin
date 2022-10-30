@@ -12,3 +12,5 @@ public class MealchelinApplication {
 	}
 
 }
+
+// 깃이그노어 작동 다시 확인. 로컬에서도 로컬 디비로 실행할 수 있게 세팅하기
