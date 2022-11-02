@@ -83,6 +83,7 @@ public class CommunityController {
 		return "redirect:/community/list";
 	}
 
+	// 파일 업로드 일단 막아놓음. 널포인터예외 찾아서 수정해보기
 	@RequestMapping(value = "/fileDown")
 	public void fileDown(@RequestParam Map<String, Object> map, HttpServletResponse response) throws Exception {
 		Map<String, Object> resultMap = service.selectFileInfo(map);
