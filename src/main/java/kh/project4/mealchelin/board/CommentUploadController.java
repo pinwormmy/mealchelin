@@ -47,8 +47,7 @@ public class CommentUploadController {
 	public void uploadAjax() {
 	}
 
-	
-	// 500에러 뜨는 거 문제파악하기
+	// 500에러 뜨는 거 문제파악하기. 파일첨부 안하면 이거말고 위에꺼 실행되야하는거 아닌가?
 	//ajaxfileupload
 	@RequestMapping(value = "/uploadAjax", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public @ResponseBody ResponseEntity<List<JSONObject>> uploadAjax
