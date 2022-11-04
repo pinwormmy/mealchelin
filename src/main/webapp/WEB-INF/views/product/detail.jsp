@@ -431,15 +431,8 @@ $(".pagination").on("click", "li a", function(event) {
 	}
 
 	for(var i = 0; i < storeimg.length ; i ++){
-/* 				var uuid = function uuidv4() {
-			  return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-			    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-			  );
-			} */
-
 		console.log('foundfile' + i + '=' + storeimg[i].name);
 		formData.append("fileupload[]",storeimg[i]);
-		//vals.push(storeimg[i].name);
 	}
 	var data = {
 			"contents" : $("#contents").val()
