@@ -14,13 +14,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="kh.project4.mealchelin.member.MemberDTO" id="member">
 		<result column="MID" property="mId" />
 		<result column="PW" property="pw" />
-		<result column="MNAME" property="mname" />
+		<result column="MNAME" property="mName" />
 		<result column="PHONE" property="phone" />
 		<result column="ADDRESS" property="address" />
 		<result column="EMAIL" property="email" />
 		<result column="REGDATE" property="regDate" />
 		<result column="MLEVEL" property="mLevel" />
-		<collection property="PointDTO" resultMap="point" />
+		<collection property="pointDTO" resultMap="point" />
 	</resultMap>	
 	
 	<select id="submitLogin" resultType="kh.project4.mealchelin.member.MemberDTO">
