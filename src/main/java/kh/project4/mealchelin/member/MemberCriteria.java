@@ -33,7 +33,7 @@ public class MemberCriteria {
 	}
 
 	public int getPageStart() {
-		return (this.page - 1) * perPageNum + 1;
+		return (this.page - 1) * perPageNum;
 	}
 
 	public int getPageEnd() {
