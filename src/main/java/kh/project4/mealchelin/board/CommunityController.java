@@ -21,6 +21,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/community")
 public class CommunityController {
+	
+	// sql로 테스트문 추가해서 게시글 늘리고 페이지 다시 확인
+	
 	private static final Logger logger = LoggerFactory.getLogger(CommunityController.class);
 	@Inject
 	private CommunityService service;
